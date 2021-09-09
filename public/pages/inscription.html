@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Movie Land</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		
+			
+			<nav class="topMenu">
+				
+				<a href="/"><img class="logoMenu" src="images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
+				<div class="linkMenu">
+					<ul class=" menuFirstLine">
+					<li><a href="/attractions">Nos Attractions</a></li>
+					<li><a href="/seloger">Trouver où se loger</a></li>
+					<li><a href="/contact">Nous Contacter</a></li>
+					<li><a href="/emploi">Offres d'emploi</a></li>
+					<li><a href="/engagements">Nos Engagements</a></li>
+				</ul>
+				
+				<ul class="menuSecLine">
+					<li><a href="/formules">Nos formules</a></li>
+					<li><a href="/noustrouver">Où nous Trouver</a></li>
+					<li><a href="/partenaires">Nos partenaires</a></li>
+					<li><a href="/vie">Vie du Parc</a></li>
+					<li><a href="/recompenses">Nos Récompenses</a></li>
+				</ul>
+				</div>
+				<div class="rightLink">
+					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
+					<a href="/deco"> Déconnection</a>
+				</div>
+			</nav>
+			<h1>S'inscrire</h1>
+
+			<div class="formPill">
+				<img class="pillule" src='images/pilulerouge.png' alt='Pillule Rouge Matrix'>
+				
+				<div class="connection">
+					<form class='formInscript'action="/insc" method="POST">
+						<label for ="firstname">Entrez votre prénom:</label>
+						<input type="text" id="firstnameInsc" name="firstname" placeholder="Entrez votre prénom" autofocus required/>
+						<label for ="lastname">Entrez votre nom:</label>
+						<input type="text" id="lastnameInsc" name="lastname" placeholder="Entrez votre nom" required/>
+						<label for= "birth">Entrez votre date de naissance: </label>
+						<input type="date" id="birthInsc" name="birth" placeholder="Entrez votre date de naissance" required/>
+						<label for ="mail">Entrez votre adresse mail:</label>
+						<input type="email" id="mailInsc" name="mail" placeholder="Entrez votre adresse mail" required/>
+						<label for ="phone">Entrez votre n° de téléphone:</label>
+						<input type="tel" id="phoneInsc" name="phone" placeholder="Entrez votre numéro de téléphone"/>
+						<label for ="password">Entrez votre mot de passe: </label>
+						<input type="text" id="passInsc" name="password" placeholder="Entrez votre mot de passe" required/>
+						<label for= "adminCase">Cochez si vous vous inscrivez en tant qu'admin: </label>
+						<input type="checkbox" id="adminCaseInsc"name="adminCase" placeholder="Cochez si vous vous connectez en tant qu'admin" />
+						<div id="divbtn">
+							<input type="submit" id="signUp" value="S'inscrire">
+						</div>
+					</form>
+
+				</div>
+				<img class="pillule" src='images/pilulebleue.png' alt='pillule Bleue Matrix'>
+			</div>
+
+		<script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+		let form = document.querySelector('form');
+		let inp = document.createElement('input');
+		let body = document.querySelector("body");
+		let adminInsc = document.querySelector("#adminCaseInsc");
+		let idPassAdmin = "passAdmin";
+		let divbtn = document.querySelector("#divbtn");
+
+		adminInsc.addEventListener('change', evt => {
+			if (adminInsc.checked == true){
+				form.insertBefore(inp, divbtn);
+				inp.setAttribute("type", "text");
+				inp.setAttribute("id", idPassAdmin);
+				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
+				inp.setAttribute("name", "adminPassword");
+			}else{
+				passAdmin.remove();
+			}
+		});
+
+
+		deco.addEventListener("click", () => {
+			socket.emit("deco");
+			window.location = "/";
+		})
+
+
+		
+	
+	</script>
+	</body>
+</html>

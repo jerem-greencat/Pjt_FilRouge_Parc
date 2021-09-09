@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Movie Land</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		
+			
+			<nav class="topMenu">
+				
+				<a href="/"><img class="logoMenu" src="images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
+				<div class="linkMenu">
+					<ul class=" menuFirstLine">
+					<li><a href="/attractions">Nos Attractions</a></li>
+					<li><a href="/seloger">Trouver où se loger</a></li>
+					<li><a href="/contact">Nous Contacter</a></li>
+					<li><a href="/emploi">Offres d'emploi</a></li>
+					<li><a href="/engagements">Nos Engagements</a></li>
+				</ul>
+				
+				<ul class="menuSecLine">
+					<li><a href="/formules">Nos formules</a></li>
+					<li><a href="/noustrouver">Où nous Trouver</a></li>
+					<li><a href="/partenaires">Nos partenaires</a></li>
+					<li><a href="/vie">Vie du Parc</a></li>
+					<li><a href="/recompenses">Nos Récompenses</a></li>
+				</ul>
+				</div>
+				<div class="rightLink">
+					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
+					<a href="/deco"> Déconnection</a>
+				</div>
+			</nav>
+			<h1>Nos partenaires</h1>
+
+		<script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+
+		deco.addEventListener("click", () => {
+			socket.emit("deco");
+			window.location = "/";
+		})
+	
+	
+	</script>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+@font-face {
+    font-family: "jedi";
+    src: url("font/star_jedi/starjedi/Starjedi.ttf") format("truetype");
+}
+
+
+
+.topMenu{
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    font-family: "jedi";
+    text-transform: lowercase;
+    /* margin : 0 0 150 0; */
+}
+
+.bodyIndex {
+    background-image: url("images/cine1.jpg");
+    background-size: 100%;
+    color: yellow;
+    font-family: 'jedi';
+}
+
+body{
+    background-color: black;
+    color: yellow;
+    font-family: 'jedi';
+}
+
+h1{
+    text-align: center;
+}
+
+.menu{
+    display : flex;
+    flex-direction: row;
+}
+
+.menuFirstLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.menuSecLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.linkMenu{
+    display: flex;
+    flex-direction: column;
+    width : 50%;
+}
+
+.logoCompte{
+    width: 4vw;
+}
+
+.logoMenu {
+    width : 10vw;
+}
+
+a{
+    color: yellow;
+}
+
+.formConnect {
+    position : relative;
+	border : 3px solid;
+	border-color: yellow;
+	width : 20%;
+	margin : 2% auto;
+	background-color: black;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.connection{
+    text-align: center;
+}
+
+.formPill{
+    display: flex;
+    justify-content: space-around;
+}
+
+.formInscript {
+    position : relative;
+	border : 3px solid;
+	border-color: yellow;
+	width : 20%;
+	margin : 2% auto;
+	background-color: black;
+    text-align: center;
+    justify-content: space-around;
+}
+
+#pUserCo {
+    text-align: center;
+    font-size: 30px;
+}
+
+.rightLink {
+    display : flex;
+    flex-direction: column;
+}
