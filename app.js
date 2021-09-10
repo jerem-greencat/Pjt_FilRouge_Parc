@@ -8,7 +8,10 @@ const { query } = require("express");
 let bodyParser = require("body-parser");
 
 let userConected = [];
+let adminConected = [];
 let adminPassword = "I'm an admin";
+let userId;
+let adminId;
 
 const con = mysql.createConnection({
     host: "localhost",
@@ -135,6 +138,7 @@ con.connect(function (err) {
             if (adminC == 'on' && passAdmin == adminPassword){                
                 insert = `INSERT INTO admin (admin_firstname, admin_lastname, admin_birth, admin_mail, admin_phone, admin_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
 
+
             } else{                
                 insert = `INSERT INTO user (user_firstname, user_lastname, user_birth, user_mail, user_phone, user_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
 
@@ -172,8 +176,10 @@ con.connect(function (err) {
             
             if(adminC !== 'on'){
                 query = `SELECT user_id FROM user WHERE user_mail = "${mail}" AND user_password = "${pwd}" AND connected = 0 LIMIT 1;`;
+                
             }else if (adminC == 'on' && passAdmin == adminPassword){
                 query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}" AND connected = 0 LIMIT 1;`;
+                
             };
             
 
@@ -185,12 +191,16 @@ con.connect(function (err) {
                 if (users.length === 0) {
                     res.redirect('/error/3');
                 } else {
-                    const userId = users[0].user_id;   
-                    const adminId = users[0].admin_id; 
+                    userId = users[0].user_id;   
+                    adminId = users[0].admin_id; 
                     if(adminC !== 'on'){
                         update = `UPDATE user SET connected = 1 WHERE user_id = ${userId};`;
+                        userConected.push(userId);
+                        console.log(userConected);
                     }else if (adminC == 'on' && passAdmin == adminPassword){
                         update = `UPDATE admin SET connected = 1 WHERE admin_id = ${adminId};`;
+                        adminConected.push(adminId);
+                        console.log(adminConected);
                     };                
                     con.query(update, (error, result) => {
                         if (error) throw error;
@@ -200,46 +210,28 @@ con.connect(function (err) {
             });
         });
 
+        io.on("disconnection", userId => {
+            let update;
+            console.log(userId);
+
+            if (userConected.length !== 0){
+                update = `UPDATE user SET connected = 0 WHERE user_id = ${userId};`;
+                userConected = [];
+            }else if (adminConected.length !== 0){
+                update =  `UPDATE admin SET connected = 0 WHERE admin_id = ${adminId};`;
+                adminConected = [];
+            }
+
+            
+            con.query(update, (error, users) => {
+                console.log(userConected);
+                console.log(adminConected);
+            });
+        });
 
 
-
-
-
-        // .post('/connect', (req, res) => {
-        //     const findUserCo = 'SELECT user_mail, user_password, user_firstname FROM user WHERE user_mail = \'' + req.body.mail + '\'';
-
-        //     con.query(findUserCo, function (error, results, fields){
-        //         if (results[0].user_mail == req.body.mail && results[0].user_password == req.body.password && req.body.adminCase !== "on"){
-        //             userConected.push(results[0].user_firstname);
-        //             console.log(userConected);
-        //             res.redirect('/');
-        //         }else if (error){
-        //             console.log("erreur")
-                
-        //         }else{
-        //             res.redirect('/errco');
-        //         }
-        //     })
-
-        // })
-        
-       
-
-
-    io.on('connection', function (socket) {
-        socket.on("connected", () => {
-            socket.emit("userco", userConected);
-        })
-
-        socket.on("deco", () => {
-            userConected = [];
-            socket.emit("userDeco", userConected);
-        } )
 
     
-
-        
-    });
     server.listen(8080);
 
 });

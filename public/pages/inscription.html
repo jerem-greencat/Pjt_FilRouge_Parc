@@ -86,6 +86,14 @@
 		let divbtn = document.querySelector("#divbtn");
 		const pwdInput = document.querySelector("#pwd");
         const confirmPwdInput = document.querySelector("#confirmPwd");
+		let btnDisconnect = document.querySelector("#disconnect");
+
+
+		btnDisconnect.addEventListener("click", () => {
+            socket.emit("disconnection", userId);
+            window.location = "/";
+        });
+
 
 
         form.addEventListener("submit", e => {
@@ -107,11 +115,6 @@
 			}
 		});
 
-
-		// deco.addEventListener("click", () => {
-		// 	socket.emit("deco");
-		// 	window.location = "/";
-		// })
 
 
 		

@@ -32,7 +32,7 @@
 				</div>
 				<div class="rightLink">
 					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
-					<a id="deco" href="/deco"> Déconnection</a>
+					<a id="disconnect" href="/deco"> Déconnection</a>
 				</div>
 			</nav>
 			<p id="pUserCo"></p>
@@ -43,30 +43,20 @@
         let socket = io();
 		let body = document.querySelector("body");
 		let p = document.querySelector("#pUserCo");
-		let deco = document.querySelector("#deco");
+		let btnDisconnect = document.querySelector("#disconnect");
 
 
-		socket.emit("connected");
+		btnDisconnect.addEventListener("click", () => {
+            socket.emit("disconnection", userId);
+            window.location = "/";
+        });
 
-		socket.on("userco", (userConected) => {
-			if(userConected.length == 1){
-				p.innerHTML = "Bonjour " + userConected[0] + ". Bienvenue chez Movie Land !"
-			}else{
-				p.innerHTML="";
-			}
+		
+		
 
-		})
+		
 
-		deco.addEventListener("click", () => {
-			socket.emit("deco");
-			window.location = "/";
-		})
-
-		socket.on("userDeco"), (userConected) => {
-			if(userConected.length == 0){
-				p.innerHTML = "";
-			}
-		}
+		
 
 
 	

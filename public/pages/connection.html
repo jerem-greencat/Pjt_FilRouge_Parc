@@ -71,6 +71,14 @@
 		let adminInsc = document.querySelector("#adminCaseCo");
 		let passAdmin = "passAdmin";
 		let divbtn = document.querySelector("#divbtn");
+		let btnDisconnect = document.querySelector("#disconnect");
+
+
+		btnDisconnect.addEventListener("click", () => {
+            socket.emit("disconnection", );
+            window.location = "/";
+        });
+
 
 		adminInsc.addEventListener('change', evt => {
 			if (adminInsc.checked == true){
@@ -84,10 +92,7 @@
 			}
 		});
 
-		deco.addEventListener("click", () => {
-			socket.emit("deco");
-			window.location = "/";
-		})
+		
 	</script>
 	</body>
 </html>

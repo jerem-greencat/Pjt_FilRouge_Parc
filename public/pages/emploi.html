@@ -32,7 +32,7 @@
 				</div>
 				<div class="rightLink">
 					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
-					<a href="/deco"> Déconnection</a>
+					<a id="disconnect" href="/deco"> Déconnection</a>
 				</div>
 			</nav>
 			<h1>Offres d'emploi</h1>
@@ -40,11 +40,14 @@
 		<script src="/socket.io/socket.io.js"></script>
     <script>
         let socket = io();
-		
-		deco.addEventListener("click", () => {
-			socket.emit("deco");
-			window.location = "/";
-		})
+		let btnDisconnect = document.querySelector("#disconnect");
+
+
+		btnDisconnect.addEventListener("click", () => {
+            socket.emit("disconnection", userId);
+            window.location = "/";
+        });
+
 	
 	
 		
