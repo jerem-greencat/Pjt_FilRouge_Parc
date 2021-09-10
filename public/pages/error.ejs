@@ -30,24 +30,20 @@
 					<li><a href="/recompenses">Nos Récompenses</a></li>
 				</ul>
 				</div>
-                <div class="rightLink">
-                    <a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
-                    <a href="/deco"> Déconnection</a>
-                </div>
+				<div class="rightLink">
+					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
+					<a href="/deco"> Déconnection</a>
+				</div>
 			</nav>
-			<h1>Les informations que vous avez fourni ne sont pas valides.</h1>
 
-            <a href ="/compte"> <button id="signIn">Revenir au formulaire de connection.</button></a>
-
-            <script src="/socket.io/socket.io.js"></script>
-    <script>
-        let socket = io();
-
-		deco.addEventListener("click", () => {
-			socket.emit("deco");
-			window.location = "/";
-		})
-		
-	</script>
+            <h1>ERROR</h1>
+            <p><%= error %></p>
+            <a href="<%= returnPath %>"><%= returnMsg %></a>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+            
+        
+        </script>
 	</body>
 </html>

@@ -47,8 +47,10 @@
 						
 						<label>Entrez votre mot de passe: </label>
 						<input type="text" id="passwordCo" name="password" placeholder="Entrez votre mot de passe" required/>
+
 						<label>Cochez si vous vous connectez en tant qu'admin: </label>
 						<input type="checkbox" id="adminCaseCo" name="adminCase" placeholder="Cochez si vous vous connectez en tant qu'admin" />
+
 						<div id="divbtn">
 							<input type="submit" id="signIn" value="Se connecter">
 						</div>
@@ -67,14 +69,14 @@
 		let inp = document.createElement('input');
 		let body = document.querySelector("body");
 		let adminInsc = document.querySelector("#adminCaseCo");
-		let idPassAdmin = "passAdmin";
+		let passAdmin = "passAdmin";
 		let divbtn = document.querySelector("#divbtn");
 
 		adminInsc.addEventListener('change', evt => {
 			if (adminInsc.checked == true){
 				form.insertBefore(inp, divbtn);
 				inp.setAttribute("type", "text");
-				inp.setAttribute("id", idPassAdmin);
+				inp.setAttribute("id", passAdmin);
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
 				inp.setAttribute("name", "adminPassword");
 			}else{

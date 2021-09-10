@@ -40,22 +40,32 @@
 			<div class="formPill">
 				<img class="pillule" src='images/pilulerouge.png' alt='Pillule Rouge Matrix'>
 				
-				<div class="connection">
-					<form class='formInscript'action="/insc" method="POST">
+				<div class="registration">
+					<form class='formInscript'action="/adduser" method="POST">
 						<label for ="firstname">Entrez votre prénom:</label>
 						<input type="text" id="firstnameInsc" name="firstname" placeholder="Entrez votre prénom" autofocus required/>
+
 						<label for ="lastname">Entrez votre nom:</label>
 						<input type="text" id="lastnameInsc" name="lastname" placeholder="Entrez votre nom" required/>
+
 						<label for= "birth">Entrez votre date de naissance: </label>
 						<input type="date" id="birthInsc" name="birth" placeholder="Entrez votre date de naissance" required/>
+
 						<label for ="mail">Entrez votre adresse mail:</label>
 						<input type="email" id="mailInsc" name="mail" placeholder="Entrez votre adresse mail" required/>
+
 						<label for ="phone">Entrez votre n° de téléphone:</label>
 						<input type="tel" id="phoneInsc" name="phone" placeholder="Entrez votre numéro de téléphone"/>
+
 						<label for ="password">Entrez votre mot de passe: </label>
-						<input type="text" id="passInsc" name="password" placeholder="Entrez votre mot de passe" required/>
+						<input type="password" id="passInsc" name="password" placeholder="Entrez votre mot de passe" required/>
+
+						<label for="confirmPwd">Confirmation du mot de passe :</label>
+						<input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirmer votre mot de passe" required />
+
 						<label for= "adminCase">Cochez si vous vous inscrivez en tant qu'admin: </label>
 						<input type="checkbox" id="adminCaseInsc"name="adminCase" placeholder="Cochez si vous vous connectez en tant qu'admin" />
+
 						<div id="divbtn">
 							<input type="submit" id="signUp" value="S'inscrire">
 						</div>
@@ -72,26 +82,36 @@
 		let inp = document.createElement('input');
 		let body = document.querySelector("body");
 		let adminInsc = document.querySelector("#adminCaseInsc");
-		let idPassAdmin = "passAdmin";
+		let passAdmin = "passAdmin";
 		let divbtn = document.querySelector("#divbtn");
+		const pwdInput = document.querySelector("#pwd");
+        const confirmPwdInput = document.querySelector("#confirmPwd");
+
+
+        form.addEventListener("submit", e => {
+            if (pwdInput.value !== confirmPwdInput.value) {
+                e.preventDefault();
+                alert("Le mot de passe et sa confirmation doivent être identiques !");
+            }
+        });
 
 		adminInsc.addEventListener('change', evt => {
 			if (adminInsc.checked == true){
 				form.insertBefore(inp, divbtn);
 				inp.setAttribute("type", "text");
-				inp.setAttribute("id", idPassAdmin);
+				inp.setAttribute("id", passAdmin);
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
-				inp.setAttribute("name", "adminPassword");
+				inp.setAttribute("name", "passAdmin");
 			}else{
 				passAdmin.remove();
 			}
 		});
 
 
-		deco.addEventListener("click", () => {
-			socket.emit("deco");
-			window.location = "/";
-		})
+		// deco.addEventListener("click", () => {
+		// 	socket.emit("deco");
+		// 	window.location = "/";
+		// })
 
 
 		

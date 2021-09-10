@@ -81,75 +81,147 @@ con.connect(function (err) {
             res.sendFile(__dirname + '/public/pages/inscription.html');
         })
 
-        .get('/errinsc', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/errinsc.html');
-        })
-
-        .get('/errco', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/errco.html');
+        .get('/error/:id', (req, res) => {
+            let error, returnPath, returnMsg;
+            switch(parseInt(req.params.id)) {
+                case 1:
+                    error = "Ce mail est déjà pris.";
+                    returnPath = "/inscription";
+                    returnMsg = "Retour au formulaire d'inscription";
+                    break;
+                case 2:
+                    error = "Une erreur est survenue lors de l'inscription. Veuillez recommencer.";
+                    returnPath = "/inscription";
+                    returnMsg = "Retour au formulaire d'inscription";
+                    break;
+                case 3:
+                    error = "Ce couple mail / mot de passe n'existe pas dans la base de données.";
+                    returnPath = "/connection";
+                    returnMsg = "Retour au formulaire de connexion";
+                    break;
+                default:
+                    error = "Vous devez vous connecter pour accèder à cette page.";
+                    returnPath = "/connection";
+                    returnMsg = "Retour au formulaire de connexion";
+            }
+            res.render(__dirname + '/public/pages/error.ejs', { error, returnPath, returnMsg });
         })
 
         .get('/deco', (req, res) => {
             res.sendFile(__dirname + '/index.html');
         })
 
-        
 
-        .post('/insc', (req, res)=>{
-            const findMailUser = 'SELECT user_mail FROM user WHERE user_mail = \'' + req.body.mail + '\'';
-            const addUser = 'INSERT INTO user (user_firstname, user_lastname, user_birth, user_mail, user_phone, user_password) VALUES ("' + req.body.firstname + '","' + req.body.lastname + '","' + req.body.birth + '","' + req.body.mail + '","' + req.body.phone + '","' + req.body.password  + '")';
-            const findUsers = 'SELECT * FROM user';
-            const findMailAdmin = 'SELECT admin_mail FROM admin WHERE admin_mail = \'' + req.body.mail + '\'';
-            const addAdmin = 'INSERT INTO admin (admin_firstname, admin_lastname, admin_birth, admin_mail, admin_phone, admin_password) VALUES ("' + req.body.firstname + '","' + req.body.lastname + '","' + req.body.birth + '","' + req.body.mail + '","' + req.body.phone + '","' + req.body.password  + '")';
-            const findAdmins = 'SELECT * FROM admin';
+
+
+        .post("/addUser", (req, res) => {
+            const fName = req.body.firstname;
+            const lName = req.body.lastname;
+            const birth = req.body.birth;
+            const mail = req.body.mail;
+            const phone = req.body.phone;
+            const pwd = req.body.password;
+            const adminC = req.body.adminCase;
+            const passAdmin = req.body.passAdmin;
+
+            let query;
+            let insert;
+            if (adminC !== 'on') {
+                query = `SELECT user_id FROM user WHERE user_mail = "${mail}" LIMIT 1;`;
+            } else {
+                query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" LIMIT 1;`;
+            }
             
-            con.query(findMailUser, function (error, results, fields){
-                
-                if (results.length == 0 && req.body.adminCase !== 'on'){
-                    console.log(req.body.adminCase);
-                    con.query(addUser, function (error, results, fields){
-                        res.redirect('/compte');
-                        con.query(findUsers, function (error, results, fields){
-                            console.log(results);
-                        });
-                    });                    
-                }else if (results.length !== 0){
-                    res.redirect('/errinsc');
-                }
+            if (adminC == 'on' && passAdmin == adminPassword){                
+                insert = `INSERT INTO admin (admin_firstname, admin_lastname, admin_birth, admin_mail, admin_phone, admin_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
 
-            })
-            con.query(findMailAdmin, function (error, results, fields){
-                if (results.length == 0 && req.body.adminCase == "on" && req.body.adminPassword == adminPassword){
-                    con.query(addAdmin, function (error, results, fields){
-                        res.redirect('/compte');
-                        con.query(findAdmins, function (error, results, fields){
-                            console.log(results);
-                        });
-                    }); 
-                }else if (results.length !== 0){
-                    res.redirect("/errinsc");
-                }
-            })
+            } else{                
+                insert = `INSERT INTO user (user_firstname, user_lastname, user_birth, user_mail, user_phone, user_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
+
+            }
+
+            con.query(query, (errorSlct, users) => {
+                if (errorSlct) throw errorSlct;
+                if(users.length !== 0) {
+                    console.log(users)
+                    res.redirect('/error/1');
+                } else {
+                    con.query(insert, (error, result) => {
+                        if (error) {
+                            console.log("non c'est la");
+                        }
+                        if (result.affectedRows) {
+                            res.redirect('/');
+                        } else {
+                            res.redirect('/error/2');
+                        }
+                    });
+                } 
+            });
+        })
+
+
+        .post("/connect", (req, res) => {
+            const mail = req.body.mail;
+            const pwd = req.body.password;
+            const adminC = req.body.adminCase;
+            const passAdmin =  req.body.passAdmin;
+
+            let query;
+            let update;
+            
+            if(adminC !== 'on'){
+                query = `SELECT user_id FROM user WHERE user_mail = "${mail}" AND user_password = "${pwd}" AND connected = 0 LIMIT 1;`;
+            }else if (adminC == 'on' && passAdmin == adminPassword){
+                query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}" AND connected = 0 LIMIT 1;`;
+            };
+            
 
             
-        })
-        .post('/connect', (req, res) => {
-            const findUserCo = 'SELECT user_mail, user_password, user_firstname FROM user WHERE user_mail = \'' + req.body.mail + '\'';
 
-            con.query(findUserCo, function (error, results, fields){
-                if (results[0].user_mail == req.body.mail && results[0].user_password == req.body.password && req.body.adminCase !== "on"){
-                    userConected.push(results[0].user_firstname);
-                    console.log(userConected);
-                    res.redirect('/');
-                }else if (error){
-                    console.log("erreur")
-                
-                }else{
-                    res.redirect('/errco');
+
+            con.query(query, (errorSlct, users) => {
+                if (errorSlct) throw errorSlct;
+                if (users.length === 0) {
+                    res.redirect('/error/3');
+                } else {
+                    const userId = users[0].user_id;   
+                    const adminId = users[0].admin_id; 
+                    if(adminC !== 'on'){
+                        update = `UPDATE user SET connected = 1 WHERE user_id = ${userId};`;
+                    }else if (adminC == 'on' && passAdmin == adminPassword){
+                        update = `UPDATE admin SET connected = 1 WHERE admin_id = ${adminId};`;
+                    };                
+                    con.query(update, (error, result) => {
+                        if (error) throw error;
+                        res.redirect('/');
+                    });
                 }
-            })
+            });
+        });
 
-        })
+
+
+
+
+
+        // .post('/connect', (req, res) => {
+        //     const findUserCo = 'SELECT user_mail, user_password, user_firstname FROM user WHERE user_mail = \'' + req.body.mail + '\'';
+
+        //     con.query(findUserCo, function (error, results, fields){
+        //         if (results[0].user_mail == req.body.mail && results[0].user_password == req.body.password && req.body.adminCase !== "on"){
+        //             userConected.push(results[0].user_firstname);
+        //             console.log(userConected);
+        //             res.redirect('/');
+        //         }else if (error){
+        //             console.log("erreur")
+                
+        //         }else{
+        //             res.redirect('/errco');
+        //         }
+        //     })
+
+        // })
         
        
 
