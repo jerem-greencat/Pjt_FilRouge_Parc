@@ -26,62 +26,62 @@ const con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
-    app.use(bodyParser.urlencoded({ extended: false }))
+    app.use(express.urlencoded({ extended: true }))
         .use(express.static(path.join(__dirname, '/public')))
         .get('/', (req, res) => {
-            res.sendFile(__dirname + '/index.ejs');
+            res.render(__dirname + '/index.ejs');
         })
 
         .get('/attractions', (req,res) => {
-            res.sendFile(__dirname + '/public/pages/attractions.ejs');
+            res.render(__dirname + '/public/pages/attractions.ejs');
         })
 
         .get('/seloger', (req, res)=> {
-            res.sendFile(__dirname + '/public/pages/seloger.ejs');
+            res.render(__dirname + '/public/pages/seloger.ejs');
         })
 
         .get('/contact', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/contact.ejs');
+            res.render(__dirname + '/public/pages/contact.ejs');
         })
 
         .get('/emploi', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/emploi.ejs');
+            res.render(__dirname + '/public/pages/emploi.ejs');
         })
 
         .get('/engagements', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/engagement.ejs');
+            res.render(__dirname + '/public/pages/engagement.ejs');
         })
 
         .get('/formules', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/formule.ejs');
+            res.render(__dirname + '/public/pages/formule.ejs');
         })
 
         .get('/noustrouver', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/noustrouver.ejs');
+            res.render(__dirname + '/public/pages/noustrouver.ejs');
         })
 
         .get('/partenaires', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/partenaire.ejs');
+            res.render(__dirname + '/public/pages/partenaire.ejs');
         })
 
         .get('/vie', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/vie.ejs');
+            res.render(__dirname + '/public/pages/vie.ejs');
         })
 
         .get('/recompenses', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/recompense.ejs');
+            res.render(__dirname + '/public/pages/recompense.ejs');
         })
 
         .get('/compte', (req, res) => {
             if (userConected.length == 0){
-                res.sendFile(__dirname + '/public/pages/connection.ejs');
+                res.render(__dirname + '/public/pages/connection.ejs');
             }else{
-                res.sendFile(__dirname + '/public/pages/moncompte.ejs');
+                res.render(__dirname + '/public/pages/moncompte.ejs');
             }
         })
 
         .get('/inscription', (req, res) => {
-            res.sendFile(__dirname + '/public/pages/inscription.ejs');
+            res.render(__dirname + '/public/pages/inscription.ejs');
         })
 
         .get('/error/:id', (req, res) => {
@@ -111,7 +111,7 @@ con.connect(function (err) {
         })
 
         .get('/deco', (req, res) => {
-            res.sendFile(__dirname + '/index.ejs');
+            res.render(__dirname + '/index.ejs');
         })
 
 
