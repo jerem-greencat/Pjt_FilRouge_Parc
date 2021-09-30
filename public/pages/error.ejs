@@ -5,14 +5,15 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Movie Land</title>
-		<link rel="stylesheet" href="style.css">
+		<!-- <link rel="stylesheet" href="style.css"> -->
+		<link rel="stylesheet" href="/style.css" type="text/css">
 	</head>
 	<body>
 		
 			
 			<nav class="topMenu">
 				
-				<a href="/"><img class="logoMenu" src="images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
+				<a href="/"><img class="logoMenu" src="../images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
 				<div class="linkMenu">
 					<ul class=" menuFirstLine">
 					<li><a href="/attractions">Nos Attractions</a></li>
@@ -31,12 +32,12 @@
 				</ul>
 				</div>
 				<div class="rightLink">
-					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
+					<a href="/compte">Mon Compte <img class= "logoCompte" src="../images/kill_park.png" alt="Mon Compte Movie Land " ></a>
 					<a id="disconnect" href="/deco"> Déconnection</a>
 				</div>
 			</nav>
 
-            <h1>ERROR</h1>
+            <h1>error</h1>
             <p><%= error %></p>
             <a href="<%= returnPath %>"><%= returnMsg %></a>
         <script src="/socket.io/socket.io.js"></script>

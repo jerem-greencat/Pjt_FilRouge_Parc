@@ -6,12 +6,17 @@ const io = require('socket.io')(server);
 const mysql = require('mysql');
 const { query } = require("express");
 let bodyParser = require("body-parser");
+const jwt = require ('jsonwebtoken');
+const cookieParser = require ('cookie-parser');
 
-let userConected = [];
-let adminConected = [];
+const SECRET = 'token';
+
+
 let adminPassword = "I'm an admin";
 let userId;
 let adminId;
+let userConected = [];
+let adminConected = [];
 
 const con = mysql.createConnection({
     host: "localhost",
@@ -27,6 +32,7 @@ const con = mysql.createConnection({
 con.connect(function (err) {
     if (err) throw err;
     app.use(express.urlencoded({ extended: true }))
+        .use(cookieParser())
         .use(express.static(path.join(__dirname, '/public')))
         .get('/', (req, res) => {
             res.render(__dirname + '/index.ejs');
@@ -90,22 +96,22 @@ con.connect(function (err) {
                 case 1:
                     error = "Ce mail est déjà pris.";
                     returnPath = "/inscription";
-                    returnMsg = "Retour au formulaire d'inscription";
+                    returnMsg = "retour au formulaire d'inscription";
                     break;
                 case 2:
-                    error = "Une erreur est survenue lors de l'inscription. Veuillez recommencer.";
+                    error = "une erreur est survenue lors de l'inscription. veuillez recommencer.";
                     returnPath = "/inscription";
-                    returnMsg = "Retour au formulaire d'inscription";
+                    returnMsg = "retour au formulaire d'inscription";
                     break;
                 case 3:
-                    error = "Ce couple mail / mot de passe n'existe pas dans la base de données.";
+                    error = "ce couple mail / mot de passe n'existe pas dans la base de données.";
                     returnPath = "/connection";
-                    returnMsg = "Retour au formulaire de connexion";
+                    returnMsg = "retour au formulaire de connexion";
                     break;
                 default:
-                    error = "Vous devez vous connecter pour accèder à cette page.";
+                    error = "vous devez vous connecter pour accèder à cette page.";
                     returnPath = "/connection";
-                    returnMsg = "Retour au formulaire de connexion";
+                    returnMsg = "retour au formulaire de connexion";
             }
             res.render(__dirname + '/public/pages/error.ejs', { error, returnPath, returnMsg });
         })
@@ -172,11 +178,12 @@ con.connect(function (err) {
             const passAdmin =  req.body.passAdmin;
 
             let query;
-            let update;
+            // let update;
             
             if(adminC !== 'on'){
                 query = `SELECT user_id FROM user WHERE user_mail = "${mail}" AND user_password = "${pwd}" AND connected = 0 LIMIT 1;`;
                 
+
             }else if (adminC == 'on' && passAdmin == adminPassword){
                 query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}" AND connected = 0 LIMIT 1;`;
                 
@@ -191,18 +198,33 @@ con.connect(function (err) {
                     userId = users[0].user_id;   
                     adminId = users[0].admin_id; 
                     if(adminC !== 'on'){
-                        update = `UPDATE user SET connected = 1 WHERE user_id = ${userId};`;
-                        userConected.push(userId);
-                        console.log(userConected);
+                        // update = `UPDATE user SET connected = 1 WHERE user_id = ${userId};`;
+
+                       userConected.push(userId);
+                       
+                       const token = jwt.sign({
+                           id : userId
+                       }, SECRET, { expiresIn: '3 hours'})  
+                       
+                       res.cookie( "access_token", token)
+                       res.redirect('/');
+                       
+                       
                     }else if (adminC == 'on' && passAdmin == adminPassword){
-                        update = `UPDATE admin SET connected = 1 WHERE admin_id = ${adminId};`;
+                        // update = `UPDATE admin SET connected = 1 WHERE admin_id = ${adminId};`;
                         adminConected.push(adminId);
-                        console.log(adminConected);
+                        
+                        const token = jwt.sign({
+                            id : adminId
+                        }, SECRET, { expiresIn: '3 hours'})
+                        return res.json({ access_token : token})
+                        
+
                     };                
-                    con.query(update, (error, result) => {
-                        if (error) throw error;
-                        res.redirect('/');
-                    });
+                    // con.query(update, (error, result) => {
+                    //     if (error) throw error;
+                    //     res.redirect('/');
+                    // });
                 }
             });
         });
