@@ -42,6 +42,14 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
             let socket = io();
+			let btnDisconnect = document.querySelector("#disconnect");
+
+
+		btnDisconnect.addEventListener("click", () => {
+            socket.emit("disconnection", userId);
+            window.location = "/";
+        });
+
             
         
         </script>

@@ -32,7 +32,7 @@
 				</div>
 				<div class="rightLink">
 					<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
-					<a href="/deco"> Déconnection</a>
+					<a id = "disconnect" href="/deco"> Déconnection</a>
 				</div>
 			</nav>
 			<h1>S'inscrire</h1>
@@ -82,7 +82,6 @@
 		let inp = document.createElement('input');
 		let body = document.querySelector("body");
 		let adminInsc = document.querySelector("#adminCaseInsc");
-		let passAdmin = "passAdmin";
 		let divbtn = document.querySelector("#divbtn");
 		const pwdInput = document.querySelector("#pwd");
         const confirmPwdInput = document.querySelector("#confirmPwd");
@@ -107,10 +106,12 @@
 			if (adminInsc.checked == true){
 				form.insertBefore(inp, divbtn);
 				inp.setAttribute("type", "text");
-				inp.setAttribute("id", passAdmin);
+				inp.setAttribute("id", "passAdmin");
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
 				inp.setAttribute("name", "passAdmin");
+
 			}else{
+				let passAdmin = document.querySelector("#passAdmin");
 				passAdmin.remove();
 			}
 		});
