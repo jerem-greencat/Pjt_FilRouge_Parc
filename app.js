@@ -183,9 +183,6 @@ con.connect(function (err) {
             };
             
 
-            
-
-
             con.query(query, (errorSlct, users) => {
                 if (errorSlct) throw errorSlct;
                 if (users.length === 0) {
@@ -221,9 +218,7 @@ con.connect(function (err) {
                 update =  `UPDATE admin SET connected = 0 WHERE admin_id = ${adminId};`;
                 adminConected = [];
             }
-
-            
-            con.query(update, (error, users) => {
+            con.query(update, (error, result) => {
                 console.log(userConected);
                 console.log(adminConected);
             });
