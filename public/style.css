@@ -15,21 +15,41 @@
 }
 
 .bodyIndex {
-    background-image: url("images/cine1.jpg");
-    background-size: 100%;
+    /* background-image: url("images/background.jpg"); */
+    /* background-size: 100%; */
+    color: yellow;
+    font-family: 'jedi';
+    background-color: rgb(19, 19, 19);
+}
+
+
+body{
+    background-color: rgb(19, 19, 19);
     color: yellow;
     font-family: 'jedi';
 }
 
-body{
-    background-color: black;
-    color: yellow;
-    font-family: 'jedi';
+#titleAcc{
+    margin: 5% auto;
 }
 
 h1{
     text-align: center;
 }
+
+#centerMenu{
+    display: flex;
+    flex-direction: row; 
+    width : 100%;
+    background-color: black;
+    /* box-shadow: 0.5vh 5vw black; */
+    justify-content: space-between;
+}
+ .imgMenu{
+     width: 33vw;
+ }
+
+
 
 .menu{
     display : flex;
@@ -80,24 +100,39 @@ a{
 }
 
 .connection{
+    
+    text-align: center;
+    /* justify-content: center; */
+}
+
+.divCo{
+    display: flex;
+    justify-content: center;
+}
+
+.ptvx{
+    width : 33%;
+    height : 33%;
+}
+
+.registration{
     text-align: center;
 }
 
-.formPill{
-    display: flex;
-    justify-content: space-around;
-}
-
 .formInscript {
+    display: flex;
+    flex-direction: column;
     position : relative;
 	border : 3px solid;
 	border-color: yellow;
-	width : 20%;
+	width : 33%;
 	margin : 2% auto;
 	background-color: black;
     text-align: center;
     justify-content: space-around;
+    
 }
+
 
 #pUserCo {
     text-align: center;
