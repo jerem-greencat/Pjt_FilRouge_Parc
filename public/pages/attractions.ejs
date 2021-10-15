@@ -31,97 +31,94 @@
 				</ul>
 				</div>
 				<div class="rightLink">
-				<a href="/compte">Mon Compte <img class= "logoCompte" src="images/kill_park.png" alt="Mon Compte Movie Land " ></a>
-				<a id="disconnect" href="/deco"> Déconnection</a>
-			</div>
+					<a href="/compte"><img class= "logoCompte" src="images/user.png" alt="Mon Compte Movie Land " ></a>
+					<a id="disconnect" href="/deco"><img class= "logoCompte" src="images/disco.png" alt="Déconnection Movie Land" ></a>
+				</div>
 			</nav>
 			<h1>Nos attractions</h1>
 			<div id="divCarrou">
-				<section class="carousel" aria-label="Gallery">
-					<ol class="carousel__viewport">
-					<li id="carousel__slide1"
-						tabindex="0"
-						class="carousel__slide">
-						<div class="carousel__snapper">
-						<a href="#carousel__slide5"
-							class="carousel__prev">Go to last slide</a>
-						<a href="#carousel__slide2"
-							class="carousel__next">Go to next slide</a>
-						</div>
-					</li>
-					<li id="carousel__slide2"
-						tabindex="0"
-						class="carousel__slide">
-						<div class="carousel__snapper"></div>
-						<a href="#carousel__slide1"
-						class="carousel__prev">Go to previous slide</a>
-						<a href="#carousel__slide3"
-						class="carousel__next">Go to next slide</a>
-					</li>
-					<li id="carousel__slide3"
-						tabindex="0"
-						class="carousel__slide">
-						<div class="carousel__snapper"></div>
-						<a href="#carousel__slide2"
-						class="carousel__prev">Go to previous slide</a>
-						<a href="#carousel__slide4"
-						class="carousel__next">Go to next slide</a>
-					</li>
-					<li id="carousel__slide4"
-						tabindex="0"
-						class="carousel__slide">
-						<div class="carousel__snapper"></div>
-						<a href="#carousel__slide3"
-						class="carousel__prev">Go to previous slide</a>
-						<a href="#carousel__slide5"
-						class="carousel__next">Go to next slide</a>
-					</li>
-					<li id="carousel__slide5"
-						tabindex="0"
-						class="carousel__slide">
-						<div class="carousel__snapper"></div>
-						<a href="#carousel__slide3"
-						class="carousel__prev">Go to previous slide</a>
-						<a href="#carousel__slide1"
-						class="carousel__next">Go to first slide</a>
-					</li>
-					</ol>
-					<aside class="carousel__navigation">
-					<ol class="carousel__navigation-list">
-						<li class="carousel__navigation-item">
-						<a href="#carousel__slide1"
-							class="carousel__navigation-button">Go to slide 1</a>
-						</li>
-						<li class="carousel__navigation-item">
-						<a href="#carousel__slide2"
-							class="carousel__navigation-button">Go to slide 2</a>
-						</li>
-						<li class="carousel__navigation-item">
-						<a href="#carousel__slide3"
-							class="carousel__navigation-button">Go to slide 3</a>
-						</li>
-						<li class="carousel__navigation-item">
-						<a href="#carousel__slide4"
-							class="carousel__navigation-button">Go to slide 4</a>
-						</li>
-						<li class="carousel__navigation-item">
-							<a href="#carousel__slide5"
-								class="carousel__navigation-button">Go to slide 5</a>
-						</li>
-					</ol>
-					</aside>
-				</section>
+				
+				<!-- Slideshow container -->
+				<div class="slideshow-container">
+
+					<!-- Full-width images with number and caption text -->
+					<div class="mySlides fade">
+						<img src="./images/attractDili.png" style="width:100%">
+					</div>
+				
+					<div class="mySlides fade">
+						<img src="./images/attractPaci.png" style="width:100%">
+					</div>
+				
+					<div class="mySlides fade">
+						<img src="./images/attractSave.png" style="width:100%">
+					</div>
+
+					<div class="mySlides fade">
+						<img src="./images/attractDem.png" style="width:100%">
+					</div>
+
+					<div class="mySlides fade">
+						<img src="./images/attractGeo.png" style="width:100%">
+					</div>
+				
+					<!-- Next and previous buttons -->
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+				</div>
+				<br>
+				
+				<!-- The dots/circles -->
+				<div style="text-align:center">
+					<span class="dot" onclick="currentSlide(1)"></span>
+					<span class="dot" onclick="currentSlide(2)"></span>
+					<span class="dot" onclick="currentSlide(3)"></span>
+					<span class="dot" onclick="currentSlide(4)"></span>
+					<span class="dot" onclick="currentSlide(5)"></span>
+				</div>
+
+
+
 			</div>
 		<script src="/socket.io/socket.io.js"></script>
     <script>
         let socket = io();
 		let btnDisconnect = document.querySelector("#disconnect");
+		
+		var slideIndex = 1;
+		showSlides(slideIndex);
 
 
 btnDisconnect.addEventListener("click", () => {
 	socket.emit("disconnection", userId);
 	window.location = "/";
 });
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
 
 
 	

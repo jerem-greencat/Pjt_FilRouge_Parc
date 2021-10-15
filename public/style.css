@@ -11,12 +11,9 @@
     justify-content: space-between;
     font-family: "jedi";
     text-transform: lowercase;
-    /* margin : 0 0 150 0; */
 }
 
 .bodyIndex {
-    /* background-image: url("images/background.jpg"); */
-    /* background-size: 100%; */
     color: yellow;
     font-family: 'jedi';
     background-color: rgb(19, 19, 19);
@@ -30,7 +27,7 @@ body{
 }
 
 #titleAcc{
-    margin: 5% auto;
+    margin: 5vw auto;
 }
 
 h1{
@@ -40,7 +37,7 @@ h1{
 #centerMenu{
     display: flex;
     flex-direction: row; 
-    width : 100%;
+    width : 100vw;
     background-color: black;
     /* box-shadow: 0.5vh 5vw black; */
     justify-content: space-between;
@@ -73,11 +70,11 @@ h1{
 .linkMenu{
     display: flex;
     flex-direction: column;
-    width : 50%;
+    width : 75vw;
 }
 
 .logoCompte{
-    width: 4vw;
+    width: 2vw;
 }
 
 .logoMenu {
@@ -89,14 +86,18 @@ a{
 }
 
 .formConnect {
+    
     position : relative;
 	border : 3px solid;
 	border-color: yellow;
-	width : 20%;
-	margin : 2% auto;
+	width : 20vw;
+	margin : 2vw auto;
 	background-color: black;
     text-align: center;
     justify-content: space-around;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .connection{
@@ -107,12 +108,12 @@ a{
 
 .divCo{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-direction: row;
 }
 
 .ptvx{
-    width : 33%;
-    height : 33%;
+    width : 33vw;
 }
 
 .registration{
@@ -125,8 +126,8 @@ a{
     position : relative;
 	border : 3px solid;
 	border-color: yellow;
-	width : 33%;
-	margin : 2% auto;
+	width : 20vw;
+	margin : 2vw auto;
 	background-color: black;
     text-align: center;
     justify-content: space-around;
@@ -134,241 +135,106 @@ a{
 }
 
 
-#pUserCo {
+/* #pUserCo {
     text-align: center;
     font-size: 30px;
-}
+} */
 
 .rightLink {
     display : flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    margin: 2vw auto;
 }
 
 /* Carroussel*/
-@keyframes tonext {
-    75% {
-      left: 0;
-    }
-    95% {
-      left: 100%;
-    }
-    98% {
-      left: 100%;
-    }
-    99% {
-      left: 0;
-    }
-  }
-  
-  @keyframes tostart {
-    75% {
-      left: 0;
-    }
-    95% {
-      left: -300%;
-    }
-    98% {
-      left: -300%;
-    }
-    99% {
-      left: 0;
-    }
-  }
-  
-  @keyframes snap {
-    96% {
-      scroll-snap-align: center;
-    }
-    97% {
-      scroll-snap-align: none;
-    }
-    99% {
-      scroll-snap-align: none;
-    }
-    100% {
-      scroll-snap-align: center;
-    }
-  }
-  
-  #divCarrou {
-    max-width: 37.5rem;
-    margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-  
-  * {
-    box-sizing: border-box;
-    scrollbar-color: transparent transparent; /* thumb and track color */
-    scrollbar-width: 0px;
-  }
-  
-  *::-webkit-scrollbar {
-    width: 0;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background: transparent;
-    border: none;
-  }
-  
-  * {
-    -ms-overflow-style: none;
-  }
-  
-  ol, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .carousel {
-    position: relative;
-    padding-top: 75%;
-    filter: drop-shadow(0 0 10px #0003);
-    perspective: 100px;
-  }
-  
-  .carousel__viewport {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    overflow-x: scroll;
-    counter-reset: item;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-  }
-  
-  .carousel__slide {
-    position: relative;
-    flex: 0 0 100%;
-    width: 100%;
-    counter-increment: item;
-  }
-  
-  
-  .carousel__slide:before {
-    /* content: counter(item); */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%,-40%,70px);
-    color: #fff;
-    font-size: 2em;
-  }
-  
-  .carousel__snapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    scroll-snap-align: center;
-  }
-  
-  @media (hover: hover) {
-    .carousel__snapper {
-      animation-name: tonext, snap;
-      animation-timing-function: ease;
-      animation-duration: 4s;
-      animation-iteration-count: infinite;
-    }
-  
-    .carousel__slide:last-child .carousel__snapper {
-      animation-name: tostart, snap;
-    }
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    .carousel__snapper {
-      animation-name: none;
-    }
-  }
-  
-  .carousel:hover .carousel__snapper,
-  .carousel:focus-within .carousel__snapper {
-    animation-name: none;
-  }
-  
-  .carousel__navigation {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-  }
-  
-  .carousel__navigation-list,
-  .carousel__navigation-item {
-    display: inline-block;
-  }
-  
-  .carousel__navigation-button {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: #333;
-    background-clip: content-box;
-    border: 0.25rem solid transparent;
-    border-radius: 50%;
-    font-size: 0;
-    transition: transform 0.1s;
-  }
-  
-  .carousel::before,
-  .carousel::after,
-  .carousel__prev,
-  .carousel__next {
-    position: absolute;
-    top: 0;
-    margin-top: 37.5%;
-    width: 4rem;
-    height: 4rem;
-    transform: translateY(-50%);
-    border-radius: 50%;
-    font-size: 0;
-    outline: 0;
-  }
-  
-  .carousel::before,
-  .carousel__prev {
-    left: -1rem;
-  }
-  
-  .carousel::after,
-  .carousel__next {
-    right: -1rem;
-  }
-  
-  .carousel::before,
-  .carousel::after {
-    content: '';
-    z-index: 1;
-    background-color: #333;
-    background-size: 1.5rem 1.5rem;
-    background-repeat: no-repeat;
-    background-position: center center;
-    color: #fff;
-    font-size: 2.5rem;
-    line-height: 4rem;
-    text-align: center;
-    pointer-events: none;
-  }
-  
-  .carousel::before {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
-  }
-  
-  .carousel::after {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
-  }
 
-  #carousel_slide1{
-      background-image: url("C:\Users\jerem\OneDrive\Bureau\gthub_prjt fil rouge\public\images\attractDili.png");
-  }
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 75vw;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: black;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+
+/* mediaqueries */
+
+@media screen and (max-width: 1600px) {
+    .topMenu{
+        font-size: 0.85em;
+    }
+    .rightLink{
+        width : 10vw;
+    }
+}

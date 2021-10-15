@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "sass": "node-sass -watch scss -o css"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +16,19 @@
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "node-sass": "^6.0.1",
     "nodemon": "^2.0.13",
+    "sass": "^1.43.2",
     "socket.io": "^4.1.2"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerem-greencat/Pjt_FilRouge_Parc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jerem-greencat/Pjt_FilRouge_Parc/issues"
+  },
+  "homepage": "https://github.com/jerem-greencat/Pjt_FilRouge_Parc#readme",
   "description": ""
 }
