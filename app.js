@@ -121,7 +121,7 @@ con.connect(function (err) {
         })
 
 
-
+        // Inscription user
 
         .post("/addUser", (req, res) => {
             const fName = req.body.firstname;
@@ -188,6 +188,9 @@ con.connect(function (err) {
                 query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}" AND connected = 0 LIMIT 1;`;
                 
             };
+
+
+            // Connection user
             
 
             con.query(query, (errorSlct, users) => {
@@ -228,6 +231,8 @@ con.connect(function (err) {
                 }
             });
         });
+
+        // Déconnection user
 
         io.on("disconnection", userId => {
             let update;

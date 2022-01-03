@@ -26,6 +26,10 @@ body{
     font-family: 'jedi';
 }
 
+body a {
+    text-decoration: none;
+}
+
 #titleAcc{
     margin: 5vw auto;
 }
