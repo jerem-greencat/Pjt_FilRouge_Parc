@@ -18,10 +18,6 @@ body {
     overflow: hidden;
 }
 
-.topMenu > div:first-of-type {
-    width: 15%;
-}
-
 .linkMenu{
     display: grid;
     grid-template-columns: repeat(6,1fr);

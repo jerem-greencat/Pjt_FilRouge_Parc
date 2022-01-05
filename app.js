@@ -203,16 +203,16 @@ con.connect(function (err) {
                     if(adminC !== 'on'){
                         // update = `UPDATE user SET connected = 1 WHERE user_id = ${userId};`;
 
-                       userConected.push(userId);
-                       
-                       const token = jwt.sign({
-                           id : userId
-                       }, SECRET, { expiresIn: '3 hours'})  
-                       
-                       res.cookie( "access_token", token)
-                       res.redirect('/');
-                       
-                       
+                    userConected.push(userId);
+                    
+                    const token = jwt.sign({
+                        id : userId
+                    }, SECRET, { expiresIn: '3 hours'})  
+                    
+                    res.cookie( "access_token", token)
+                    res.redirect('/');
+                    
+                    
                     }else if (adminC == 'on' && passAdmin == adminPassword){
                         // update = `UPDATE admin SET connected = 1 WHERE admin_id = ${adminId};`;
                         adminConected.push(adminId);
