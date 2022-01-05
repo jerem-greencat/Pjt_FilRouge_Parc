@@ -84,7 +84,7 @@
 							<label for="confirmPwd">Confirmation du mot de passe:</label>
 							<input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirmer votre mot de passe" required />
 						</div>
-						<div>
+						<div class="divAdmin">
 							<label for= "adminCase">Cochez si vous vous inscrivez en tant qu'admin: </label>
 							<input type="checkbox" id="adminCaseInsc"name="adminCase" placeholder="Cochez si vous vous connectez en tant qu'admin" />
 						</div>
@@ -103,7 +103,7 @@
 		let inp = document.createElement('input');
 		let body = document.querySelector("body");
 		let adminInsc = document.querySelector("#adminCaseInsc");
-		let divbtn = document.querySelector("#divbtn");
+		let divAdmin = document.querySelector('.divAdmin');
 		const pwdInput = document.querySelector("#pwd");
         const confirmPwdInput = document.querySelector("#confirmPwd");
 		let btnDisconnect = document.querySelector("#disconnect");
@@ -125,7 +125,7 @@
 
 		adminInsc.addEventListener('change', evt => {
 			if (adminInsc.checked == true){
-				form.insertBefore(inp, divbtn);
+				divAdmin.append(inp);
 				inp.setAttribute("type", "text");
 				inp.setAttribute("id", "passAdmin");
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
