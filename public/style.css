@@ -1,34 +1,45 @@
-@font-face {
-    font-family: "jedi";
-    src: url("font/star_jedi/starjedi/Starjedi.ttf") format("truetype");
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 
 
 .topMenu{
-    display: flex;
-    background-color: black;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    background-color: #fff;
     justify-content: space-between;
-    font-family: "jedi";
-    text-transform: lowercase;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: rgb(241, 241, 241) 0px 0px 0px 16px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.topMenu > div:first-of-type {
+    width: 15%;
 }
 
 .bodyIndex {
-    color: yellow;
-    font-family: 'jedi';
-    background-color: rgb(19, 19, 19);
+    color: darkblue;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
 }
 
 
 body{
-    background-color: rgb(19, 19, 19);
-    color: yellow;
-    font-family: 'jedi';
+    background-color: #fff;
+    color: darkblue;
+    font-family: 'Poppins', sans-serif;
 }
 
 body a {
     text-decoration: none;
+    font-weight: bold;
 }
+
+body a:hover {
+    color: lightskyblue;
+}
+
+
 
 #titleAcc{
     margin: 5vw auto;
@@ -39,17 +50,27 @@ h1{
 }
 
 #centerMenu{
-    display: flex;
-    flex-direction: row; 
-    width : 100vw;
-    background-color: black;
-    /* box-shadow: 0.5vh 5vw black; */
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background-color: #fff;
+    /* box-shadow: 0.5vh 5vw blanc; */
     justify-content: space-between;
+    
+    box-shadow: rgb(241, 241, 241) 0px 0px 0px 16px;
+    border-radius: 15px;
+    overflow: hidden;
 }
- .imgMenu{
-     width: 33vw;
- }
 
+#centerMenu div {
+    text-align: center;
+}
+
+#centerMenu img {
+    width: 90%;
+    border-radius: 15px;
+}
 
 
 .menu{
@@ -57,24 +78,10 @@ h1{
     flex-direction: row;
 }
 
-.menuFirstLine{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style-type: none;
-}
-
-.menuSecLine{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style-type: none;
-}
-
 .linkMenu{
-    display: flex;
-    flex-direction: column;
-    width : 75vw;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    list-style-type: none;
 }
 
 .logoCompte{
@@ -86,17 +93,17 @@ h1{
 }
 
 a{
-    color: yellow;
+    color: darkblue;
 }
 
 .formConnect {
     
     position : relative;
 	border : 3px solid;
-	border-color: yellow;
+	border-color: darkblue;
 	width : 20vw;
 	margin : 2vw auto;
-	background-color: black;
+	background-color: #fff;
     text-align: center;
     justify-content: space-around;
     justify-content: center;
@@ -129,10 +136,10 @@ a{
     flex-direction: column;
     position : relative;
 	border : 3px solid;
-	border-color: yellow;
+	border-color: darkblue;
 	width : 20vw;
 	margin : 2vw auto;
-	background-color: black;
+	background-color: #fff;
     text-align: center;
     justify-content: space-around;
     
@@ -177,7 +184,7 @@ a{
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: black;
+  color: #fff;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
@@ -189,9 +196,9 @@ a{
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
+/* On hover, add a blanc background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  background-color: #fff;
 }
 
 
