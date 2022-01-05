@@ -90,19 +90,44 @@ a{
 
 /* Style formulaire de connection */
 
+.titlePages {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
 .formConnect {
-    
-    position : relative;
 	border : 3px solid;
+    padding: 10px;
 	border-color: darkblue;
-	width : 20vw;
-	margin : 2vw auto;
-	background-color: #fff;
-    text-align: center;
-    justify-content: space-around;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+    border-radius: 15px;
+	width : 20%;
+    margin: auto;
+    display: grid;
+    grid-template-rows: repeat(5,1fr);
+}
+
+#divbtn {
+    margin-top: 10%;
+}
+
+.btn {
+    background-color: darkblue;
+    border-color: darkblue;
+    color: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn:hover {
+    background-color: lightskyblue;
+    color: darkblue;
+    border :darkblue;
+    cursor: pointer;
+}
+
+#signUp {
+    margin-top: 50px;
 }
 
 .connection{
@@ -111,14 +136,12 @@ a{
     /* justify-content: center; */
 }
 
-.divCo{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
+.formConnect #adminCaseCo {
+    margin: auto;
 }
 
-.ptvx{
-    width : 33vw;
+form > div  {
+    display: grid;
 }
 
 /* Style INscription */
@@ -128,17 +151,19 @@ a{
 }
 
 .formInscript {
-    display: flex;
-    flex-direction: column;
-    position : relative;
+    display: grid;
+    grid-template-rows: repeat(9,1fr);
 	border : 3px solid;
+    padding: 10px;
 	border-color: darkblue;
-	width : 20vw;
-	margin : 2vw auto;
-	background-color: #fff;
-    text-align: center;
-    justify-content: space-around;
-    
+    border-radius: 15px;
+	width : 20%;
+	margin : auto;    
+}
+
+#adminCaseInsc {
+    margin: auto;
+    margin-top: -10px;
 }
 
 /* Carroussel*/
