@@ -17,6 +17,7 @@
     width: 15%;
 }
 
+
 .bodyIndex {
     color: darkblue;
     font-family: 'Poppins', sans-serif;
@@ -89,7 +90,7 @@ h1{
 }
 
 .logoMenu {
-    width : 10vw;
+    width : 800% ;
 }
 
 a{
