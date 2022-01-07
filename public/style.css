@@ -13,7 +13,7 @@ body {
     background-color: #fff;
     justify-content: space-between;
     font-family: 'Poppins', sans-serif;
-    box-shadow: rgb(241, 241, 241) 0px 0px 0px 16px;
+    box-shadow: rgba(121, 168, 216, 0.22) 0px 0px 16px;
     border-radius: 15px;
     overflow: hidden;
 }
@@ -66,7 +66,7 @@ h1{
     /* box-shadow: 0.5vh 5vw blanc; */
     justify-content: space-between;
     
-    box-shadow: rgb(241, 241, 241) 0px 0px 0px 16px;
+    box-shadow: rgba(121, 168, 216, 0.22) 0px 0px 16px;
     border-radius: 15px;
     overflow: hidden;
 }
@@ -114,6 +114,7 @@ a{
     border-radius: 15px;
     padding: 10px;
     font-family: 'Poppins', sans-serif;
+    height: 40px;
 }
 
 .btn:hover {
@@ -135,10 +136,22 @@ a{
 
 .formConnect #adminCaseCo {
     margin: auto;
+    padding-top: 25px;
+    margin-bottom: 25px;
 }
 
 form > div  {
     display: grid;
+}
+
+
+.formConnect label,
+.formInscript label {
+    padding-top: 45px;
+}
+
+.formConnect #divbtn {
+    margin-top: 30%;
 }
 
 /* Style INscription */
@@ -160,7 +173,8 @@ form > div  {
 
 #adminCaseInsc {
     margin: auto;
-    margin-top: -10px;
+    margin-bottom: 15px;
+    
 }
 
 /* Carroussel*/
