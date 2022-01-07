@@ -256,6 +256,39 @@ form > div  {
 
 
 
+/* Style vie du parc */
+
+#parklife_file{
+    border: 3px solid darkblue;
+    border-radius: 15px;
+    text-align: center;
+    width: fit-content;
+    padding: 10px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+#form-file div {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 50px;
+}
+ 
+#div-file-btn {
+    grid-template-columns: none !important;
+    margin-top: 15px !important;
+}
+
+#sendFileBtn {
+    margin: auto;
+}
+
+
+
+
+
+
+
 /* mediaqueries */
 
 @media screen and (max-width: 1600px) {
