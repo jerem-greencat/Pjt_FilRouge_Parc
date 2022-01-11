@@ -20,11 +20,10 @@ module.exports.image = {
         if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
             
         console.log('middle2');
-            req.fileValidationError = 'Only image files are allowed!';
-            return cb(new Error('Only image files are allowed!'), false);
+            req.fileValidationError = 'Seuls les fichiers images sont autorisés';
+            return cb(new Error('Seuls les fichiers images sont autorisés'), false);
         }
         
-        console.log('middle3');
         cb(null, true);
     }
 }

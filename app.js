@@ -9,23 +9,28 @@ let bodyParser = require("body-parser");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
+const db = require ('./dbConfig');
+const con = db.con;
+console.log(con);
+
+
 const imageRouter = require('./roadsFiles/image-route');
 
 const SECRET = 'token';
 
+
+// const con = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "",
+//     database: "movieLand"
+// })
 
 let adminPassword = "I'm an admin";
 let userId;
 let adminId;
 let userConected = [];
 let adminConected = [];
-
-const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "movieLand"
-});
 
 
 
@@ -35,9 +40,12 @@ const con = mysql.createConnection({
 con.connect(function (err) {
     if (err) throw err;
     app.use('/', imageRouter);
+    console.log(con);
     app.use(express.urlencoded({ extended: true }))
         .use(cookieParser())
         .use(express.static(path.join(__dirname, '/public')))
+        .set('view engine', 'ejs')
+        .set('views', path.join(__dirname, '/public/pages'))
         .get('/', (req, res) => {
             res.render(__dirname + '/index.ejs');
         })
@@ -75,7 +83,7 @@ con.connect(function (err) {
         })
 
         .get('/vie', (req, res) => {
-            res.render(__dirname + '/public/pages/vie.ejs');
+            res.render(__dirname + '/public/pages/vie.ejs', {alertMsg : ""});
         })
 
         .get('/recompenses', (req, res) => {
@@ -237,18 +245,8 @@ con.connect(function (err) {
             });
         })
 
-    // upload file 
-
-    // Have to install multer ==> npm install --save multer
-
-    //  tuto : https://codingstatus.com/how-to-store-image-in-mysql-database-using-node-js/
-
-    // .post('/addFile', (req, res) => {
-    //     const file = LOAD_FILE(req.body.fileUpload);
-    //     const fileTitle = req.body.fileTitle;
-    //     // let insert = `INSERT INTO file (file_name, adress_file) VALUES ("${fileTitle}", "${file}");`;
-
-  
+    // Récupération des images dans le dossier d'upload
+    // tuto https://attacomsian.com/blog/nodejs-list-directory-files
 
     // Déconnection user
 

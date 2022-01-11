@@ -40,7 +40,7 @@ module.exports = {
         console.log('image-control 6');
                 // call model
                 imageModel.storeImage(inputValues, function (data) {
-                    res.render('/vie', { alertMsg: data })
+                    res.render('vie', { alertMsg: data })
                 })
 
             }

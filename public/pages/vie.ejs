@@ -108,10 +108,22 @@
 					</div>
 				</form>
 			</div>
+	
 
 
 		<script src="/socket.io/socket.io.js"></script>
     <script>
+
+let alertMsg = document.currentScript.getAttribute('alertMsg')
+
+console.log(document.currentScript.getAttribute('alertMsg'));
+		if (alertMsg) {
+				window.alert(alertMsg);
+			};
+
+		
+
+
         let socket = io();
 		let btnDisconnect = document.querySelector("#disconnect");
 
