@@ -8,13 +8,15 @@ const { query } = require("express");
 let bodyParser = require("body-parser");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const fs = require('fs');
 
-const db = require ('./dbConfig');
+const db = require('./dbConfig');
 const con = db.con;
 console.log(con);
 
 
 const imageRouter = require('./roadsFiles/image-route');
+const { dirname } = require("path");
 
 const SECRET = 'token';
 
@@ -83,7 +85,7 @@ con.connect(function (err) {
         })
 
         .get('/vie', (req, res) => {
-            res.render(__dirname + '/public/pages/vie.ejs', {alertMsg : ""});
+            res.render(__dirname + '/public/pages/vie.ejs', { alertMsg: "" });
         })
 
         .get('/recompenses', (req, res) => {
@@ -237,16 +239,31 @@ con.connect(function (err) {
 
 
                     };
-                    // con.query(update, (error, result) => {
-                    //     if (error) throw error;
-                    //     res.redirect('/');
-                    // });
                 }
             });
         })
 
     // Récupération des images dans le dossier d'upload
     // tuto https://attacomsian.com/blog/nodejs-list-directory-files
+
+    // install fs
+    
+    // path dossier d'upload
+    const uploadFiles = './public/uploadFiles';
+
+    // liste tous les fichiers présents dans le dossier
+        const files = fs.readdirSync(dir);
+
+        fs.readdir(uploadFiles, (err, files) => {
+            if (err) {
+                throw err;
+            }
+            files.forEach(file => {
+                console.log(file);
+            });
+        });
+
+        // Manque comparaison des noms dans de le dossier avec les noms dans la bdd et envoie des fichiers vers page ejs pour affichage
 
     // Déconnection user
 
