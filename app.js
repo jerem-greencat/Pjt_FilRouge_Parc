@@ -9,6 +9,8 @@ let bodyParser = require("body-parser");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
+const db=require('../database');
+
 const SECRET = 'token';
 
 
@@ -24,6 +26,7 @@ const con = mysql.createConnection({
     password: "",
     database: "movieLand"
 });
+
 
 
 
@@ -237,40 +240,70 @@ con.connect(function (err) {
         // Have to install multer ==> npm install --save multer
 
         //  tuto : https://codingstatus.com/how-to-store-image-in-mysql-database-using-node-js/
-        .post('/addFile', (req, res) => {
-            const file = LOAD_FILE(req.body.fileUpload);
-            const fileTitle = req.body.fileTitle;
-            // let insert = `INSERT INTO file (file_name, adress_file) VALUES ("${fileTitle}", "${file}");`;
 
 
 
-            module.exports = {
-                storeImage: uploadFunction(inputValues, callback){
-                // check unique email address
-                const sql = 'SELECT * FROM images WHERE adress_file =?';
-                con.query(sql, inputValues.adress_file, function (err, data, fields) {
-                    if (err) throw err
-                    if (data.length > 1) {
-                        var msg = inputValues.adress_file + " is already exist";
-                    } else {
-                        // save users data into database
-                        var sql = 'INSERT INTO file SET ?';
-                        con.query(sql, inputValues, function (err, data) {
-                            if (err) throw err;
-                        });
-                        var msg = inputValues.image_name + "is uploaded successfully";
-                    }
-                    return callback(msg)
-                })
+        module.exports={ 
+            storeImage:function(inputValues,callback){
+            // check unique email address
+          const sql='SELECT * FROM images WHERE image_name =?';
+          db.query(sql,inputValues.image_name,function (err, data, fields) {
+           if(err) throw err
+           if(data.length>1){
+               const msg = inputValues.image_name + " is already exist";
+           }else{ 
+              // save users data into database
+              const sql = 'INSERT INTO images SET ?';
+             db.query(sql, inputValues, function (err, data) {
+                if (err) throw err;
+             });
+            const msg = inputValues.image_name+ "is uploaded successfully";
+           }
+           return callback(msg)
+          })
             }
-        }
+          }
+
+
+
+
+
+
+
+        // .post('/addFile', (req, res) => {
+        //     const file = LOAD_FILE(req.body.fileUpload);
+        //     const fileTitle = req.body.fileTitle;
+        //     // let insert = `INSERT INTO file (file_name, adress_file) VALUES ("${fileTitle}", "${file}");`;
+
+
+
+        //     module.exports = {
+        //         storeImage: uploadFunction(inputValues, callback){
+                // check unique email address
+        //         const sql = 'SELECT * FROM images WHERE adress_file =?';
+        //         con.query(sql, inputValues.adress_file, function (err, data, fields) {
+        //             if (err) throw err
+        //             if (data.length > 1) {
+        //                 var msg = inputValues.adress_file + " is already exist";
+        //             } else {
+        //                 // save users data into database
+        //                 var sql = 'INSERT INTO file SET ?';
+        //                 con.query(sql, inputValues, function (err, data) {
+        //                     if (err) throw err;
+        //                 });
+        //                 var msg = inputValues.image_name + "is uploaded successfully";
+        //             }
+        //             return callback(msg)
+        //         })
+        //     }
+        // }
 
             // con.query(insert, (error, result) => {
             //     if (result.affectedRows) { 
             //         res.redirect('/vie');
             //     } else if (error) throw error;
             // })
-        });
+        // });
 
 // Déconnection user
 
@@ -297,3 +330,5 @@ io.on("disconnection", userId => {
 server.listen(8080);
 
 });
+
+module.exports = con;
