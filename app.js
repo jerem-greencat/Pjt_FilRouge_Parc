@@ -9,7 +9,7 @@ let bodyParser = require("body-parser");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
-const db=require('../database');
+const imageRouter = require('./roadsFiles/image-route');
 
 const SECRET = 'token';
 
@@ -34,6 +34,7 @@ const con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
+    app.use('/', imageRouter);
     app.use(express.urlencoded({ extended: true }))
         .use(cookieParser())
         .use(express.static(path.join(__dirname, '/public')))
@@ -93,6 +94,7 @@ con.connect(function (err) {
             res.render(__dirname + '/public/pages/inscription.ejs');
         })
 
+
         .get('/error/:id', (req, res) => {
             let error, returnPath, returnMsg;
             switch (parseInt(req.params.id)) {
@@ -126,7 +128,7 @@ con.connect(function (err) {
 
         // Inscription user
 
-        .post("/addUser", (req, res) => {
+        .post("/adduser", (req, res) => {
             const fName = req.body.firstname;
             const lName = req.body.lastname;
             const birth = req.body.birth;
@@ -235,99 +237,42 @@ con.connect(function (err) {
             });
         })
 
-        // upload file 
+    // upload file 
 
-        // Have to install multer ==> npm install --save multer
+    // Have to install multer ==> npm install --save multer
 
-        //  tuto : https://codingstatus.com/how-to-store-image-in-mysql-database-using-node-js/
+    //  tuto : https://codingstatus.com/how-to-store-image-in-mysql-database-using-node-js/
 
+    // .post('/addFile', (req, res) => {
+    //     const file = LOAD_FILE(req.body.fileUpload);
+    //     const fileTitle = req.body.fileTitle;
+    //     // let insert = `INSERT INTO file (file_name, adress_file) VALUES ("${fileTitle}", "${file}");`;
 
+  
 
-        module.exports={ 
-            storeImage:function(inputValues,callback){
-            // check unique email address
-          const sql='SELECT * FROM images WHERE image_name =?';
-          db.query(sql,inputValues.image_name,function (err, data, fields) {
-           if(err) throw err
-           if(data.length>1){
-               const msg = inputValues.image_name + " is already exist";
-           }else{ 
-              // save users data into database
-              const sql = 'INSERT INTO images SET ?';
-             db.query(sql, inputValues, function (err, data) {
-                if (err) throw err;
-             });
-            const msg = inputValues.image_name+ "is uploaded successfully";
-           }
-           return callback(msg)
-          })
-            }
-          }
+    // Déconnection user
 
+    io.on("disconnection", userId => {
+        let update;
+        console.log(userId);
 
-
-
-
-
-
-        // .post('/addFile', (req, res) => {
-        //     const file = LOAD_FILE(req.body.fileUpload);
-        //     const fileTitle = req.body.fileTitle;
-        //     // let insert = `INSERT INTO file (file_name, adress_file) VALUES ("${fileTitle}", "${file}");`;
-
-
-
-        //     module.exports = {
-        //         storeImage: uploadFunction(inputValues, callback){
-                // check unique email address
-        //         const sql = 'SELECT * FROM images WHERE adress_file =?';
-        //         con.query(sql, inputValues.adress_file, function (err, data, fields) {
-        //             if (err) throw err
-        //             if (data.length > 1) {
-        //                 var msg = inputValues.adress_file + " is already exist";
-        //             } else {
-        //                 // save users data into database
-        //                 var sql = 'INSERT INTO file SET ?';
-        //                 con.query(sql, inputValues, function (err, data) {
-        //                     if (err) throw err;
-        //                 });
-        //                 var msg = inputValues.image_name + "is uploaded successfully";
-        //             }
-        //             return callback(msg)
-        //         })
-        //     }
-        // }
-
-            // con.query(insert, (error, result) => {
-            //     if (result.affectedRows) { 
-            //         res.redirect('/vie');
-            //     } else if (error) throw error;
-            // })
-        // });
-
-// Déconnection user
-
-io.on("disconnection", userId => {
-    let update;
-    console.log(userId);
-
-    if (userConected.length !== 0) {
-        update = `UPDATE user SET connected = 0 WHERE user_id = ${userId};`;
-        userConected = [];
-    } else if (adminConected.length !== 0) {
-        update = `UPDATE admin SET connected = 0 WHERE admin_id = ${adminId};`;
-        adminConected = [];
-    }
-    con.query(update, (error, result) => {
-        console.log(userConected);
-        console.log(adminConected);
+        if (userConected.length !== 0) {
+            update = `UPDATE user SET connected = 0 WHERE user_id = ${userId};`;
+            userConected = [];
+        } else if (adminConected.length !== 0) {
+            update = `UPDATE admin SET connected = 0 WHERE admin_id = ${adminId};`;
+            adminConected = [];
+        }
+        con.query(update, (error, result) => {
+            console.log(userConected);
+            console.log(adminConected);
+        });
     });
-});
 
 
 
 
-server.listen(8080);
+    server.listen(8080);
 
 });
 
