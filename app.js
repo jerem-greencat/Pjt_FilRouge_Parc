@@ -252,7 +252,7 @@ con.connect(function (err) {
     const uploadFiles = './public/uploadFiles';
 
     // liste tous les fichiers présents dans le dossier
-        const files = fs.readdirSync(dir);
+        const files = fs.readdirSync(uploadFiles);
 
         fs.readdir(uploadFiles, (err, files) => {
             if (err) {
