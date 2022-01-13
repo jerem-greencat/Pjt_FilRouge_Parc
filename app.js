@@ -86,7 +86,34 @@ con.connect(function (err) {
         })
 
         .get('/vie', (req, res) => {
-            res.render(__dirname + '/public/pages/vie.ejs', { alertMsg: "" });
+            // Récupération des images dans le dossier d'upload
+            // tuto https://attacomsian.com/blog/nodejs-list-directory-files
+
+            // install fs
+    
+            // path dossier d'upload
+            let arrayFiles = [];
+            let uploadFiles = './public/uploadFiles/';
+
+             // liste tous les fichiers présents dans le dossier
+             const files = fs.readdirSync(uploadFiles);
+             fs.readdir(uploadFiles, (err, files) => {
+                 console.log(files)
+                if (err) {
+                    throw err;
+                }
+                files.forEach(file => {
+                    console.log(file);
+                    uploadFiles = '/public/uploadFiles/';
+                    arrayFiles.push(uploadFiles + file);
+                    console.log(arrayFiles);
+                    // res.writeHead(200, {'Content-Type': 'image/jpeg'});
+                });
+                
+                res.render(__dirname + '/public/pages/vie.ejs', { alertMsg: "", arrayFiles });
+            });
+           
+
         })
 
         .get('/recompenses', (req, res) => {
@@ -140,29 +167,6 @@ con.connect(function (err) {
             res.render(__dirname + '/index.ejs');
         })
 
-        .get('/pics', (req, res)=>{
-            // Récupération des images dans le dossier d'upload
-            // tuto https://attacomsian.com/blog/nodejs-list-directory-files
-
-            // install fs
-    
-            // path dossier d'upload
-            const uploadFiles = './public/uploadFiles/';
-
-             // liste tous les fichiers présents dans le dossier
-             const files = fs.readdirSync(uploadFiles);
-             fs.readdir(uploadFiles, (err, files) => {
-                if (err) {
-                    throw err;
-                }
-                files.forEach(file => {
-                    console.log(file);
-                    // res.writeHead(200, {'Content-Type': 'image/jpeg'});
-                    res.sendFile(uploadFiles + file)
-                });
-                // res.end(filesArray);
-            });
-        })
 
 
         // Inscription user

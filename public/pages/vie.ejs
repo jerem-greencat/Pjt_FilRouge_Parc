@@ -116,18 +116,9 @@
 			<h3>Fichiers envoyés par les utilisateurs</h3>
 
 			<div id="admin-container">
-				<div>
-					<p>image title</p>
-					<p>image</p>
-				</div>
-				<div>
-					<p>image title</p>
-					<p>image</p>
-				</div>
-				<div>
-					<p>image title</p>
-					<p>image</p>
-				</div>
+				<% for(let i = 0; i<arrayFiles.length ; i++) {%>
+					<img src= <%=arrayFiles[i]%>/>
+				<%}%>
 			</div>
 		
 		</div>
