@@ -137,21 +137,13 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 
-		// let alertMsg = document.currentScript.getAttribute('alertMsg')
 		let adminSection = document.querySelector('#parc-admin-section');
 		const admintkn = getCookie("admintkn");
-		console.log(admintkn);
+		const adminContainer = document.querySelector('#admin-container');
+		let img = document.createElement('img');
 
-
-
-
-		// console.log(document.currentScript.getAttribute('alertMsg'));
-		// 		if (alertMsg) {
-		// 				window.alert(alertMsg);
-		// 			};
-
-
-
+		
+		
 
 		let socket = io();
 		let btnDisconnect = document.querySelector("#disconnect");
@@ -220,6 +212,9 @@
 		}
 
 		// Add images uploaded
+
+		
+
 
 
 

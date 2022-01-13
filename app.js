@@ -17,6 +17,7 @@ console.log(con);
 
 const imageRouter = require('./roadsFiles/image-route');
 const { dirname } = require("path");
+const res = require("express/lib/response");
 
 const SECRET = 'token';
 
@@ -139,6 +140,30 @@ con.connect(function (err) {
             res.render(__dirname + '/index.ejs');
         })
 
+        .get('/pics', (req, res)=>{
+            // Récupération des images dans le dossier d'upload
+            // tuto https://attacomsian.com/blog/nodejs-list-directory-files
+
+            // install fs
+    
+            // path dossier d'upload
+            const uploadFiles = './public/uploadFiles/';
+
+             // liste tous les fichiers présents dans le dossier
+             const files = fs.readdirSync(uploadFiles);
+             fs.readdir(uploadFiles, (err, files) => {
+                if (err) {
+                    throw err;
+                }
+                files.forEach(file => {
+                    console.log(file);
+                    // res.writeHead(200, {'Content-Type': 'image/jpeg'});
+                    res.sendFile(uploadFiles + file)
+                });
+                // res.end(filesArray);
+            });
+        })
+
 
         // Inscription user
 
@@ -251,25 +276,7 @@ con.connect(function (err) {
             });
         })
 
-    // Récupération des images dans le dossier d'upload
-    // tuto https://attacomsian.com/blog/nodejs-list-directory-files
-
-    // install fs
     
-    // path dossier d'upload
-    const uploadFiles = './public/uploadFiles';
-
-    // liste tous les fichiers présents dans le dossier
-        const files = fs.readdirSync(uploadFiles);
-
-        fs.readdir(uploadFiles, (err, files) => {
-            if (err) {
-                throw err;
-            }
-            files.forEach(file => {
-                console.log(file);
-            });
-        });
 
 
     
