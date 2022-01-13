@@ -284,6 +284,35 @@ form > div  {
 }
 
 
+/* Parklife admin section */
+
+h3{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#parc-admin-section {
+    display: none;
+    border-radius: 15px;
+    box-shadow: rgba(121, 168, 216, 0.22) 0px 0px 16px;
+    background-color: #fff;
+    margin-top: 25px;
+}
+
+#parc-admin-section.active {
+    display: block;
+}
+
+#admin-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#admin-container div {
+    text-align: center;
+}
+
+
 
 
 

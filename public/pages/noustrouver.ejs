@@ -58,11 +58,15 @@
         let socket = io();
 		let btnDisconnect = document.querySelector("#disconnect");
 
-
-		btnDisconnect.addEventListener("click", () => {
-			socket.emit("disconnection", userId);
-			window.location = "/";
-		});
+		btnDisconnect.addEventListener("click", async () => {
+			console.log('removing');
+            const removingUser = await browser.cookies.remove({name: "usertkn"});
+            const removingAdmin = await browser.cookies.remove({name: "admintkn"});
+			console.log(removingUser);
+			console.log(removingAdmin);
+            window.location = "/";
+        });
+		
 
 	
 	</script>

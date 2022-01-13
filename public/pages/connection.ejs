@@ -60,12 +60,8 @@
 							<input type="email" id="mailCo" name="mail" placeholder="Entrez votre adresse mail" required/>
 						</div>
 						<div>
-							<label>Entrez votre adresse mail:</label>
-							<input type="email" id="mailCo" name="mail" placeholder="Entrez votre adresse mail" required/>
-						</div>
-						<div>
 							<label>Entrez votre mot de passe: </label>
-							<input type="text" id="passwordCo" name="password" placeholder="Entrez votre mot de passe" required/>
+							<input type="password" id="passwordCo" name="password" placeholder="Entrez votre mot de passe" required/>
 						</div>
 						<div class="divAdmin">
 							<label>Cochez si vous vous connectez en tant qu'admin: </label>
@@ -92,8 +88,12 @@
 		let btnDisconnect = document.querySelector("#disconnect");
 
 
-		btnDisconnect.addEventListener("click", () => {
-            socket.emit("disconnection", );
+		btnDisconnect.addEventListener("click", async () => {
+			console.log('removing');
+            const removingUser = await browser.cookies.remove({name: "usertkn"});
+            const removingAdmin = await browser.cookies.remove({name: "admintkn"});
+			console.log(removingUser);
+			console.log(removingAdmin);
             window.location = "/";
         });
 
@@ -104,7 +104,7 @@
 				inp.setAttribute("type", "text");
 				inp.setAttribute("id", "passAdmin");
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
-				inp.setAttribute("name", "adminPassword");
+				inp.setAttribute("name", "passAdmin");
 			}else{
 				let passAdmin = document.querySelector("#passAdmin");
 				passAdmin.remove();

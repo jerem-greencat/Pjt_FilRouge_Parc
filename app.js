@@ -93,7 +93,11 @@ con.connect(function (err) {
         })
 
         .get('/compte', (req, res) => {
-            if (userConected.length == 0) {
+
+            const {usertkn, admintkn } = req.cookies;
+            console.log(usertkn);
+            console.log(admintkn);
+            if (usertkn == undefined && admintkn == undefined) {
                 res.render(__dirname + '/public/pages/connection.ejs');
             } else {
                 res.render(__dirname + '/public/pages/moncompte.ejs');
@@ -196,11 +200,11 @@ con.connect(function (err) {
             // let update;
 
             if (adminC !== 'on') {
-                query = `SELECT user_id FROM user WHERE user_mail = "${mail}" AND user_password = "${pwd}" AND connected = 0 LIMIT 1;`;
+                query = `SELECT user_id FROM user WHERE user_mail = "${mail}" AND user_password = "${pwd}"`;
 
-
-            } else if (adminC == 'on' && passAdmin == adminPassword) {
-                query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}" AND connected = 0 LIMIT 1;`;
+// adminC == 'on' &&
+            } else if ( passAdmin == adminPassword) {
+                query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}"`;
 
             };
 
@@ -216,30 +220,34 @@ con.connect(function (err) {
                     userId = users[0].user_id;
                     adminId = users[0].admin_id;
                     if (adminC !== 'on') {
-                        // update = `UPDATE user SET connected = 1 WHERE user_id = ${userId};`;
-
                         userConected.push(userId);
 
                         const token = jwt.sign({
                             id: userId
                         }, SECRET, { expiresIn: '3 hours' })
 
-                        res.cookie("access_token", token)
+                        
+                        res.cookie('usertkn',token);
+                        console.log(req.cookies);
+                        
                         res.redirect('/');
 
 
                     } else if (adminC == 'on' && passAdmin == adminPassword) {
-                        // update = `UPDATE admin SET connected = 1 WHERE admin_id = ${adminId};`;
                         adminConected.push(adminId);
 
                         const token = jwt.sign({
                             id: adminId
                         }, SECRET, { expiresIn: '3 hours' })
-                        return res.json({ access_token: token })
+                        res.cookie('admintkn',token);
+                        
+                        res.redirect('/');
 
 
                     };
                 }
+                
+                
             });
         })
 
@@ -263,27 +271,8 @@ con.connect(function (err) {
             });
         });
 
-        // Manque comparaison des noms dans de le dossier avec les noms dans la bdd et envoie des fichiers vers page ejs pour affichage
 
-    // Déconnection user
-
-    io.on("disconnection", userId => {
-        let update;
-        console.log(userId);
-
-        if (userConected.length !== 0) {
-            update = `UPDATE user SET connected = 0 WHERE user_id = ${userId};`;
-            userConected = [];
-        } else if (adminConected.length !== 0) {
-            update = `UPDATE admin SET connected = 0 WHERE admin_id = ${adminId};`;
-            adminConected = [];
-        }
-        con.query(update, (error, result) => {
-            console.log(userConected);
-            console.log(adminConected);
-        });
-    });
-
+    
 
 
 
