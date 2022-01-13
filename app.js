@@ -104,7 +104,7 @@ con.connect(function (err) {
                 }
                 files.forEach(file => {
                     console.log(file);
-                    uploadFiles = '/public/uploadFiles/';
+                    uploadFiles = './public/uploadFiles/';
                     arrayFiles.push(uploadFiles + file);
                     console.log(arrayFiles);
                     // res.writeHead(200, {'Content-Type': 'image/jpeg'});
@@ -256,7 +256,7 @@ con.connect(function (err) {
                         }, SECRET, { expiresIn: '3 hours' })
 
                         
-                        res.cookie('usertkn',token);
+                        res.cookie('usertkn',token , {maxAge: 10800});
                         console.log(req.cookies);
                         
                         res.redirect('/');
@@ -268,7 +268,7 @@ con.connect(function (err) {
                         const token = jwt.sign({
                             id: adminId
                         }, SECRET, { expiresIn: '3 hours' })
-                        res.cookie('admintkn',token);
+                        res.cookie('admintkn',token, {maxAge: 10800});
                         
                         res.redirect('/');
 
@@ -279,13 +279,6 @@ con.connect(function (err) {
                 
             });
         })
-
-    
-
-
-    
-
-
 
     server.listen(8080);
 
