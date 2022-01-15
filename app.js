@@ -47,6 +47,7 @@ con.connect(function (err) {
     app.use(express.urlencoded({ extended: true }))
         .use(cookieParser())
         .use(express.static(path.join(__dirname, '/public')))
+        .use("/uploadFiles", express.static(__dirname + "/uploadFiles"))
         .set('view engine', 'ejs')
         .set('views', path.join(__dirname, '/public/pages'))
         .get('/', (req, res) => {
@@ -104,10 +105,10 @@ con.connect(function (err) {
                 }
                 files.forEach(file => {
                     console.log(file);
-                    uploadFiles = './public/uploadFiles/';
-                    arrayFiles.push(uploadFiles + file);
+                    uploadFiles = 'http://localhost:8080/vie/uploadFiles/';
+                    // let fileString = file.replace()
+                    arrayFiles.push(uploadFiles + file );
                     console.log(arrayFiles);
-                    // res.writeHead(200, {'Content-Type': 'image/jpeg'});
                 });
                 
                 res.render(__dirname + '/public/pages/vie.ejs', { alertMsg: "", arrayFiles });
