@@ -306,10 +306,13 @@ h3{
 #admin-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    text-align: center;
 }
 
-#admin-container div {
-    text-align: center;
+#admin-container img {
+    width:100%;
+    border-radius: 15px;
 }
 
 

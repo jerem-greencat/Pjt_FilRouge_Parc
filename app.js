@@ -97,23 +97,23 @@ con.connect(function (err) {
             let uploadFiles = './public/uploadFiles/';
 
              // liste tous les fichiers présents dans le dossier
-             const files = fs.readdirSync(uploadFiles);
-             fs.readdir(uploadFiles, (err, files) => {
-                 console.log(files)
+            const files = fs.readdirSync(uploadFiles);
+            fs.readdir(uploadFiles, (err, files) => {
+                console.log(files)
                 if (err) {
                     throw err;
                 }
                 files.forEach(file => {
                     console.log(file);
-                    uploadFiles = 'http://localhost:8080/vie/uploadFiles/';
-                    // let fileString = file.replace()
+                    uploadFiles = 'http://localhost:8080/uploadFiles/';
+                    // const fileString = file.replace(/ ?\d\/\d?);
                     arrayFiles.push(uploadFiles + file );
                     console.log(arrayFiles);
                 });
                 
                 res.render(__dirname + '/public/pages/vie.ejs', { alertMsg: "", arrayFiles });
             });
-           
+        
 
         })
 
@@ -257,7 +257,10 @@ con.connect(function (err) {
                         }, SECRET, { expiresIn: '3 hours' })
 
                         
-                        res.cookie('usertkn',token , {maxAge: 10800});
+                        res.cookie('usertkn',token );
+
+                        //  , {maxAge: 10800} : A ajouter en paramètres au dessus pour destruction du cookies
+
                         console.log(req.cookies);
                         
                         res.redirect('/');
@@ -269,7 +272,9 @@ con.connect(function (err) {
                         const token = jwt.sign({
                             id: adminId
                         }, SECRET, { expiresIn: '3 hours' })
-                        res.cookie('admintkn',token, {maxAge: 10800});
+                        res.cookie('admintkn',token);
+
+                        //  , {maxAge: 10800} : A ajouter en paramètres au dessus pour destruction du cookies
                         
                         res.redirect('/');
 
