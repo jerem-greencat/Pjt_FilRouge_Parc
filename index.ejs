@@ -54,7 +54,48 @@
 				</div>
 			</nav>
 
-			<h1 id="titleAcc"> Soyez acteur de votre propre film chez Movieland, le parc d'attractions qui vous plongera dans vos films préférés !</h1>
+			<div class="navMobile">
+				<p class="btn btnMenu">Menu</p>
+
+				<ul class="linkMenuMobile">
+					<li><a href="/attractions">Nos Attractions</a></li>
+					<li><a href="/seloger">Trouver où se loger</a></li>
+					<li><a href="/contact">Nous Contacter</a></li>
+					<li><a href="/emploi">Offres d'emploi</a></li>
+					<li><a href="/engagements">Nos Engagements</a></li>
+						
+					<li><a href="/formules">Nos formules</a></li>
+					<li><a href="/noustrouver">Où nous Trouver</a></li>
+					<li><a href="/partenaires">Nos partenaires</a></li>
+					<li><a href="/vie">Vie du Parc</a></li>
+					<li><a href="/recompenses">Nos Récompenses</a></li>
+					
+					<li>
+						<div>
+							<a href="/compte">
+								<p>
+									Mon Compte
+									<img class= "logoCompte" src="images/user.png" alt="Mon Compte Movie Land " >
+								</p>
+							</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a id="disconnect" href="/deco">
+								<p>
+									Déconnection
+									<img class= "logoCompte" src="images/disco.png" alt="Déconnection Movie Land" >
+								</p>
+							</a>
+						</div>
+					</li>
+				</ul>
+
+
+			</div>
+
+			<h1 id="titleAcc">Le cinéma au coeur de votre séjour !</h1>
 			
 			<div id="centerMenu">
 				<div class="divMenu"> 
@@ -86,6 +127,9 @@
 		let body = document.querySelector("body");
 		let p = document.querySelector("#pUserCo");
 		let btnDisconnect = document.querySelector("#disconnect");
+		let btnMenu = document.querySelector(".btnMenu");
+
+		btnMenu.addEventListener('click')
 
 
 		btnDisconnect.addEventListener("click", async () => {

@@ -55,6 +55,46 @@ h1{
     text-align: center;
 }
 
+
+/* Style menu mobile */
+
+.navMobile {
+    display: none;
+}
+
+.btnMenu {
+    width: max-content;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+
+.linkMenuMobile {
+    display: none;
+}
+
+.linkMenuMobile.active {
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 10px;
+    font-size: small;
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.linkMenuMobile li {
+    height: 30px;
+}
+
+.navMobile .logoCompte {
+    width: 20px;
+}
+
+
+
 /* Style menu axial index */
 
 #centerMenu{
@@ -323,11 +363,49 @@ h3{
 
 /* mediaqueries */
 
-@media screen and (max-width: 1600px) {
+/* @media screen and (max-width: 1600px) {
     .topMenu{
         font-size: 0.85em;
     }
     .rightLink{
         width : 10vw;
+    }
+} */
+
+@media screen and (max-width: 1300px) {
+    .logoMenu {
+        width: 175px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .topMenu {
+        width: 100%;
+        display: block;
+        text-align: center;
+        border: 1px solid green;
+    }
+    .linkMenu {
+        grid-template-columns: repeat(3,1fr);
+        margin: auto;
+        border: 1px solid red;
+    }
+    .logoCompte {
+        width: 45px;
+    }
+
+    .topMenu > div,
+    .topMenu > ul {
+        width: 100%;
+    }
+
+    @media screen and (max-width : 600px) {
+        .linkMenu {
+            display: none;
+        }
+
+        .navMobile {
+            display: block;
+        }
     }
 }
