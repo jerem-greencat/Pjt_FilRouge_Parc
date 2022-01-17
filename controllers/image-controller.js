@@ -6,7 +6,7 @@ const imageModel = require('../models/image-model');
 
 module.exports = {
     imageUploadForm: function (req, res) {
-        res.render('/vie');
+        // res.render('/vie');
         
         console.log('image-control 1');
     },
@@ -40,7 +40,7 @@ module.exports = {
         console.log('image-control 6');
                 // call model
                 imageModel.storeImage(inputValues, function (data) {
-                    res.render('vie', { alertMsg: data })
+                    res.redirect('/vie'); 
                 })
 
             }

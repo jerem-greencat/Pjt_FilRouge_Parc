@@ -165,6 +165,8 @@ con.connect(function (err) {
         })
 
         .get('/deco', (req, res) => {
+            res.clearCookie("usertkn");
+            res.clearCookie("admintkn");
             res.render(__dirname + '/index.ejs');
         })
 
