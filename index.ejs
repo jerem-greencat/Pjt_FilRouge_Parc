@@ -57,7 +57,7 @@
 			<div class="navMobile">
 				<p class="btn btnMenu">Menu</p>
 
-				<ul class="linkMenuMobile">
+				<ul id="linkMenuMobile" class="">
 					<li><a href="/attractions">Nos Attractions</a></li>
 					<li><a href="/seloger">Trouver où se loger</a></li>
 					<li><a href="/contact">Nous Contacter</a></li>
@@ -128,8 +128,17 @@
 		let p = document.querySelector("#pUserCo");
 		let btnDisconnect = document.querySelector("#disconnect");
 		let btnMenu = document.querySelector(".btnMenu");
+		let linkMenuMobile = document.querySelector('#linkMenuMobile');
 
-		btnMenu.addEventListener('click')
+		btnMenu.addEventListener('click', () => {
+			if ( linkMenuMobile.classList != 'active') {
+				console.log('add class');
+				linkMenuMobile.classList.add('active');
+			} else if (linkMenuMobile.classList == 'active'){
+				console.log('remove class');
+				linkMenuMobile.classList.remove('active');
+			}
+		});
 
 
 		btnDisconnect.addEventListener("click", async () => {

@@ -51,6 +51,47 @@
 			</div>
 		</nav>
 
+		<div class="navMobile">
+			<p class="btn btnMenu">Menu</p>
+
+			<ul id="linkMenuMobile" class="">
+				<li><a href="/attractions">Nos Attractions</a></li>
+				<li><a href="/seloger">Trouver où se loger</a></li>
+				<li><a href="/contact">Nous Contacter</a></li>
+				<li><a href="/emploi">Offres d'emploi</a></li>
+				<li><a href="/engagements">Nos Engagements</a></li>
+					
+				<li><a href="/formules">Nos formules</a></li>
+				<li><a href="/noustrouver">Où nous Trouver</a></li>
+				<li><a href="/partenaires">Nos partenaires</a></li>
+				<li><a href="/vie">Vie du Parc</a></li>
+				<li><a href="/recompenses">Nos Récompenses</a></li>
+				
+				<li>
+					<div>
+						<a href="/compte">
+							<p>
+								Mon Compte
+								<img class= "logoCompte" src="images/user.png" alt="Mon Compte Movie Land " >
+							</p>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a id="disconnect" href="/deco">
+							<p>
+								Déconnection
+								<img class= "logoCompte" src="images/disco.png" alt="Déconnection Movie Land" >
+							</p>
+						</a>
+					</div>
+				</li>
+			</ul>
+
+
+		</div>
+
 			<h1>Nos attractions</h1>
 			<div id="divCarrou">
 				
@@ -100,6 +141,19 @@
     <script>
         let socket = io();
 		let btnDisconnect = document.querySelector("#disconnect");
+
+		let btnMenu = document.querySelector(".btnMenu");
+		let linkMenuMobile = document.querySelector('#linkMenuMobile');
+
+		btnMenu.addEventListener('click', () => {
+			if ( linkMenuMobile.classList != 'active') {
+				console.log('add class');
+				linkMenuMobile.classList.add('active');
+			} else if (linkMenuMobile.classList == 'active'){
+				console.log('remove class');
+				linkMenuMobile.classList.remove('active');
+			}
+		});
 		
 		var slideIndex = 1;
 		showSlides(slideIndex);

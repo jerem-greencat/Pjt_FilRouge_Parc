@@ -70,11 +70,11 @@ h1{
 
 
 
-.linkMenuMobile {
+#linkMenuMobile {
     display: none;
 }
 
-.linkMenuMobile.active {
+#linkMenuMobile.active {
     display: grid;
     list-style: none;
     grid-template-columns: repeat(2,1fr);
@@ -85,7 +85,7 @@ h1{
     border-radius: 15px;
 }
 
-.linkMenuMobile li {
+#linkMenuMobile li {
     height: 30px;
 }
 
@@ -137,6 +137,7 @@ a{
 	border-color: darkblue;
     border-radius: 15px;
 	width : 20%;
+    min-width: 200px;
     margin: auto;
     display: grid;
     grid-template-rows: repeat(5,1fr);
@@ -208,6 +209,7 @@ form > div  {
 	border-color: darkblue;
     border-radius: 15px;
 	width : 20%;
+    min-width: 200px;
 	margin : auto;    
 }
 
@@ -356,26 +358,18 @@ h3{
 }
 
 
-
-
-
-
-
 /* mediaqueries */
 
-/* @media screen and (max-width: 1600px) {
-    .topMenu{
-        font-size: 0.85em;
-    }
-    .rightLink{
-        width : 10vw;
-    }
-} */
 
 @media screen and (max-width: 1300px) {
     .logoMenu {
         width: 175px;
+        margin-bottom: 25px;
+    }    
+    .logoCompte {
+        width: 30px;
     }
+    
 }
 
 @media screen and (max-width: 1150px) {
@@ -383,15 +377,14 @@ h3{
         width: 100%;
         display: block;
         text-align: center;
-        border: 1px solid green;
     }
     .linkMenu {
         grid-template-columns: repeat(3,1fr);
         margin: auto;
-        border: 1px solid red;
+        padding-left: 0;
     }
     .logoCompte {
-        width: 45px;
+        width: 30px;
     }
 
     .topMenu > div,
@@ -399,13 +392,20 @@ h3{
         width: 100%;
     }
 
-    @media screen and (max-width : 600px) {
-        .linkMenu {
-            display: none;
-        }
+    
+}
+@media screen and (max-width : 600px) {
+    .linkMenu {
+        display: none;
+    }
 
-        .navMobile {
-            display: block;
-        }
+    .navMobile {
+        display: block;
+    }
+}
+
+@media  screen and (max-width : 450px) {
+    #centerMenu {
+        font-size: small;
     }
 }
