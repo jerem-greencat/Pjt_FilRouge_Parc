@@ -139,12 +139,16 @@
 
 		<script src="/socket.io/socket.io.js"></script>
     <script>
-        let socket = io();
-		let form = document.querySelector('form');
-		let inp = document.createElement('input');
+		let socket = io();
 		let body = document.querySelector("body");
+        let form = document.querySelector('form');
+		
+		let inp = document.createElement('input');
 		let adminInsc = document.querySelector("#adminCaseInsc");
 		let divAdmin = document.querySelector('.divAdmin');
+
+
+
 		const pwdInput = document.querySelector("#passInsc");
         const confirmPwdInput = document.querySelector("#confirmPwd");
 		let btnDisconnect = document.querySelector("#disconnect");
@@ -172,17 +176,12 @@
         });
 		
 
-        form.addEventListener("submit", e => {
-            if (pwdInput.value !== confirmPwdInput.value) {
-                e.preventDefault();
-                alert("Le mot de passe et sa confirmation doivent être identiques !");
-            }
-        });
+        
 
 		adminInsc.addEventListener('change', evt => {
 			if (adminInsc.checked == true){
 				divAdmin.append(inp);
-				inp.setAttribute("type", "text");
+				inp.setAttribute("type", "password");
 				inp.setAttribute("id", "passAdmin");
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
 				inp.setAttribute("name", "passAdmin");
@@ -195,7 +194,17 @@
 
 
 
-		
+		form.addEventListener("submit", e => {
+			let passAdmin = document.querySelector("#passAdmin");
+            if (pwdInput.value !== confirmPwdInput.value) {
+                e.preventDefault();
+                alert("Le mot de passe et sa confirmation doivent être identiques !");
+            }
+			if (adminInsc.checked == true && passAdmin != "I'm an admin") {
+				e.preventDefault();
+				alert("Le mot de passe admin ne correspond pas !");
+			}
+        });
 	
 	</script>
 	</body>
