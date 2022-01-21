@@ -16,6 +16,7 @@ console.log(con);
 
 
 const imageRouter = require('./roadsFiles/image-route');
+
 const { dirname } = require("path");
 const res = require("express/lib/response");
 
@@ -97,7 +98,7 @@ con.connect(function (err) {
             let uploadFiles = './public/uploadFiles/';
 
              // liste tous les fichiers présents dans le dossier
-            const files = fs.readdirSync(uploadFiles);
+            // const files = fs.readdirSync(uploadFiles);
             fs.readdir(uploadFiles, (err, files) => {
                 console.log(files)
                 if (err) {
@@ -106,7 +107,6 @@ con.connect(function (err) {
                 files.forEach(file => {
                     console.log(file);
                     uploadFiles = 'http://localhost:8080/uploadFiles/';
-                    // const fileString = file.replace(/ ?\d\/\d?);
                     arrayFiles.push(uploadFiles + file );
                     console.log(arrayFiles);
                 });

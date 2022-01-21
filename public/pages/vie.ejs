@@ -155,7 +155,6 @@
 			<div id="admin-container">
 				
 				<%  for (let i = 0; i<arrayFiles.length ; i++) {%>
-					<!-- <% const fileString = arrayFiles[i].endsWith('/') ? arrayFiles[i].slice(0, -1) : arrayFiles[i]; %> -->
 					<img src=  <%= arrayFiles[i] %>>
 				<%}%>
 			</div>
@@ -242,7 +241,9 @@
 				let c = ca[i];
 				while (c.charAt(0) == ' ') {
 					c = c.substring(1);
+					
 				}
+				console.log(c);
 				if (c.indexOf(name) == 0) {
 					adminSection.classList.add('active');
 					return c.substring(name.length, c.length);
