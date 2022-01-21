@@ -1,0 +1,35 @@
+.npy_calc_price_results #npy-bestchoice,
+.npy_calc_price_results #npy-bestchoice-ns {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: var(--pink);
+  padding: 5px;
+  font-size: 0.9em;
+  color: #fff;
+  border-radius: 5px;
+  transform: translateY(-100%) translateX(-50%);
+}
+
+.npy_calc_price_results #npy-bestchoice.active,
+.npy_calc_price_results #npy-bestchoice-ns.active {
+  display: block;
+  width: fit-content;
+  animation-duration: 0.5s;
+  animation-name: npy-showdiff;
+}
+
+@keyframes npy-showdiff {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+.npy_calc_price_results #npy-bestchoice-ns,
+.npy_calc_price_results #npy-bestchoice {
+  display: none;
+}
