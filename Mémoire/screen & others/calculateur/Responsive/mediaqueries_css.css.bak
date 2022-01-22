@@ -1,0 +1,5 @@
+@media screen and (max-width: 768px) {
+	.npy_calc_price_results {
+		display: block;
+	}
+}
