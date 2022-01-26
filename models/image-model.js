@@ -23,7 +23,7 @@ module.exports = {
                     console.log('image-mod 2');
                     // save users data into database
                     const sql = 'INSERT INTO image SET ?';
-                    db.performQuery(sql, inputValues, function (err, data) {
+                    db.con.query(sql, inputValues, function (err, data) {
                         if (err) throw err;
                     });
                     msg = inputValues.image_name + "is uploaded successfully";
