@@ -156,6 +156,11 @@ con.connect(function (err) {
                     returnPath = "/connection";
                     returnMsg = "retour au formulaire de connexion";
                     break;
+                case 4 :
+                    error = "Le mot de passe Admin ne correspond pas";
+                    returnPath = "/inscription";
+                    returnMsg = "Retour au formulaire d'inscription";
+                    break;
                 default:
                     error = "vous devez vous connecter pour accèder à cette page.";
                     returnPath = "/connection";
@@ -196,14 +201,18 @@ con.connect(function (err) {
                 insert = `INSERT INTO admin (admin_firstname, admin_lastname, admin_birth, admin_mail, admin_phone, admin_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
 
 
-            } else {
+            } else if (adminC !== 'on'){
                 insert = `INSERT INTO user (user_firstname, user_lastname, user_birth, user_mail, user_phone, user_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
 
-            }
+                console.log('insert avec adminC = On')
+
+            } 
 
             con.query(query, (errorSlct, users) => {
                 if (errorSlct) throw errorSlct;
-                if (users.length !== 0) {
+                if (adminC == 'on' && passAdmin !== adminPassword) {
+                    res.redirect('/error/4');
+                } else if (users.length !== 0) {
                     console.log(users)
                     res.redirect('/error/1');
                 } else {
