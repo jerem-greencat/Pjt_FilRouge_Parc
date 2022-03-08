@@ -8,10 +8,7 @@
 	<title>Movie Land</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-
 	<nav class="topMenu">
 		<div>
 			<a href="/"><img class="logoMenu" src="images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
@@ -32,7 +29,6 @@
 					</a>
 				</div>
 			</li>
-
 			<li><a href="/formules">Nos formules</a></li>
 			<li><a href="/noustrouver">Où nous Trouver</a></li>
 			<li><a href="/partenaires">Nos partenaires</a></li>
@@ -49,26 +45,21 @@
 				</div>
 			</li>
 		</ul>
-
 		</div>
 	</nav>
-
 	<div class="navMobile">
 		<p class="btn btnMenu">Menu</p>
-
 		<ul id="linkMenuMobile" class="">
 			<li><a href="/attractions">Nos Attractions</a></li>
 			<li><a href="/seloger">Trouver où se loger</a></li>
 			<li><a href="/contact">Nous Contacter</a></li>
 			<li><a href="/emploi">Offres d'emploi</a></li>
 			<li><a href="/engagements">Nos Engagements</a></li>
-				
 			<li><a href="/formules">Nos formules</a></li>
 			<li><a href="/noustrouver">Où nous Trouver</a></li>
 			<li><a href="/partenaires">Nos partenaires</a></li>
 			<li><a href="/vie">Vie du Parc</a></li>
 			<li><a href="/recompenses">Nos Récompenses</a></li>
-			
 			<li>
 				<div>
 					<a href="/compte">
@@ -90,53 +81,36 @@
 				</div>
 			</li>
 		</ul>
-
-
 	</div>
-
 	<h1>Vie du Parc</h1>
-
-
-
 	<div id="divCarrou">
-
 		<!-- Slideshow container -->
 		<div class="slideshow-container">
-
 			<!-- Full-width images with number and caption text -->
 			<div class="mySlides fade">
 				<img src="./images/vie_parc1.jpg" style="width:100%">
 			</div>
-
 			<div class="mySlides fade">
 				<img src="./images/vie_parc2.jpg" style="width:100%">
 			</div>
-
 			<div class="mySlides fade">
 				<img src="./images/vie_parc3.jpg" style="width:100%">
 			</div>
-
-
 			<!-- Next and previous buttons -->
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
 		</div>
 		<br>
-
 		<!-- The dots/circles -->
 		<div style="text-align:center">
 			<span class="dot" onclick="currentSlide(1)"></span>
 			<span class="dot" onclick="currentSlide(2)"></span>
 			<span class="dot" onclick="currentSlide(3)"></span>
 		</div>
-
-
-
 	</div>
 	<div id="parklife_file">
 		<p>Vous souhaitez nous partager vos photos ?</p>
 		<p>Aucun problème, envoyez nous vos photos et nous les ajouterons à notre banque d'images</p>
-
 		<form id="form-file" action="/store-image" method="POST" enctype="multipart/form-data">
 			<div>
 				<label>Sélectionnez votre photo:</label>
@@ -147,22 +121,14 @@
 			</div>
 		</form>
 	</div>
-
-
 		<div id="parc-admin-section" class="">
 			<h3>Fichiers envoyés par les utilisateurs</h3>
-
 			<div id="admin-container">
-				
 				<%  for (let i = 0; i<arrayFiles.length ; i++) {%>
 					<img src=  <%= arrayFiles[i] %>>
 				<%}%>
 			</div>
-		
 		</div>
-	
-
-
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 
@@ -170,7 +136,6 @@
 		const admintkn = getCookie("admintkn");
 		const adminContainer = document.querySelector('#admin-container');
 		let img = document.createElement('img');
-
 		let btnMenu = document.querySelector(".btnMenu");
 		let linkMenuMobile = document.querySelector('#linkMenuMobile');
 
@@ -183,9 +148,6 @@
 				linkMenuMobile.classList.remove('active');
 			}
 		});
-
-		
-		
 
 		let socket = io();
 		let btnDisconnect = document.querySelector("#disconnect");
@@ -201,8 +163,6 @@
 			console.log(removingAdmin);
 			// window.location = "/";
 		});
-
-
 
 		// Next/previous controls
 		function plusSlides(n) {
@@ -230,9 +190,7 @@
 			dots[slideIndex - 1].className += " active";
 		}
 
-
 		// Vérif admin token & Affichage admin section
-
 		function getCookie(cname) {
 			let name = cname + "=";
 			let decodedCookie = decodeURIComponent(document.cookie);
@@ -240,8 +198,7 @@
 			for (let i = 0; i < ca.length; i++) {
 				let c = ca[i];
 				while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-					
+					c = c.substring(1);					
 				}
 				console.log(c);
 				if (c.indexOf(name) == 0) {
@@ -251,11 +208,8 @@
 					adminSection.classList.remove('active');
 				}
 			}
-
 			return "";
 		}
-
-
 	</script>
 </body>
 

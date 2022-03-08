@@ -1,166 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Movie Land</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		
-			
-		<nav class="topMenu">
-			<div>
-				<a href="/"><img class="logoMenu" src="images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
-			</div>
-			<ul class="linkMenu">
-				<li><a href="/attractions">Nos Attractions</a></li>
-				<li><a href="/seloger">Trouver où se loger</a></li>
-				<li><a href="/contact">Nous Contacter</a></li>
-				<li><a href="/emploi">Offres d'emploi</a></li>
-				<li><a href="/engagements">Nos Engagements</a></li>
-				<li>
-					<div>
-						<a href="/compte">
-							<p>
-								Mon Compte
-								<img class= "logoCompte" src="images/user.png" alt="Mon Compte Movie Land " >
-							</p>
-						</a>
-					</div>
-				</li>
-					
-				<li><a href="/formules">Nos formules</a></li>
-				<li><a href="/noustrouver">Où nous Trouver</a></li>
-				<li><a href="/partenaires">Nos partenaires</a></li>
-				<li><a href="/vie">Vie du Parc</a></li>
-				<li><a href="/recompenses">Nos Récompenses</a></li>
-				<li>
-					<div>
-						<a id="disconnect" href="/deco">
-							<p>
-								Déconnection
-								<img class= "logoCompte" src="images/disco.png" alt="Déconnection Movie Land" >
-							</p>
-						</a>
-					</div>
-				</li>
-			</ul>
-			
-			</div>
-		</nav>
 
-		<div class="navMobile">
-			<p class="btn btnMenu">Menu</p>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Movie Land</title>
+	<link rel="stylesheet" href="style.css">
+</head>
 
-			<ul id="linkMenuMobile" class="">
-				<li><a href="/attractions">Nos Attractions</a></li>
-				<li><a href="/seloger">Trouver où se loger</a></li>
-				<li><a href="/contact">Nous Contacter</a></li>
-				<li><a href="/emploi">Offres d'emploi</a></li>
-				<li><a href="/engagements">Nos Engagements</a></li>
-					
-				<li><a href="/formules">Nos formules</a></li>
-				<li><a href="/noustrouver">Où nous Trouver</a></li>
-				<li><a href="/partenaires">Nos partenaires</a></li>
-				<li><a href="/vie">Vie du Parc</a></li>
-				<li><a href="/recompenses">Nos Récompenses</a></li>
-				
-				<li>
-					<div>
-						<a href="/compte">
-							<p>
-								Mon Compte
-								<img class= "logoCompte" src="images/user.png" alt="Mon Compte Movie Land " >
-							</p>
-						</a>
-					</div>
-				</li>
-				<li>
-					<div>
-						<a id="disconnect" href="/deco">
-							<p>
-								Déconnection
-								<img class= "logoCompte" src="images/disco.png" alt="Déconnection Movie Land" >
-							</p>
-						</a>
-					</div>
-				</li>
-			</ul>
-
-
+<body>
+	<nav class="topMenu">
+		<div>
+			<a href="/"><img class="logoMenu" src="images/Movie_Land_logo.png" alt="Logo Movie Land"> </a>
 		</div>
-
-			<h1 class="titlePages">S'inscrire</h1>
-
-			<div class="divCo">
-				<div class="registration">
-					<form class='formInscript'action="/adduser" method="POST">
-						<div>
-							<label for ="firstname">Entrez votre prénom:</label>
-							<input type="text" id="firstnameInsc" name="firstname" placeholder="Entrez votre prénom" autofocus required/>
-						</div>
-						<div>
-							<label for ="lastname">Entrez votre nom:</label>
-							<input type="text" id="lastnameInsc" name="lastname" placeholder="Entrez votre nom" required/>
-						</div>
-						<div>
-							<label for= "birth">Entrez votre date de naissance: </label>
-							<input type="date" id="birthInsc" name="birth" placeholder="Entrez votre date de naissance" required/>
-						</div>
-						<div>
-							<label for ="mail">Entrez votre adresse mail:</label>
-							<input type="email" id="mailInsc" name="mail" placeholder="Entrez votre adresse mail" required/>
-						</div>
-						<div>
-							<label for ="phone">Entrez votre n° de téléphone:</label>
-							<input type="tel" id="phoneInsc" name="phone" placeholder="Entrez votre numéro de téléphone"/>
-						</div>
-						<div>
-							<label for ="password">Entrez votre mot de passe: </label>
-							<input type="password" id="passInsc" name="password" placeholder="Entrez votre mot de passe" required/>
-						</div>
-						<div>
-							<label for="confirmPwd">Confirmation du mot de passe:</label>
-							<input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirmer votre mot de passe" required />
-						</div>
-						<div class="divAdmin">
-							<label for= "adminCase">Cochez si vous vous inscrivez en tant qu'admin: </label>
-							<input type="checkbox" id="adminCaseInsc"name="adminCase" placeholder="Cochez si vous vous connectez en tant qu'admin" />
-						</div>
-						<div id="divbtn">
-							<input class="btn" type="submit" id="signUp" value="S'inscrire">
-						</div>
-					</form>
-
+		<ul class="linkMenu">
+			<li><a href="/attractions">Nos Attractions</a></li>
+			<li><a href="/seloger">Trouver où se loger</a></li>
+			<li><a href="/contact">Nous Contacter</a></li>
+			<li><a href="/emploi">Offres d'emploi</a></li>
+			<li><a href="/engagements">Nos Engagements</a></li>
+			<li>
+				<div>
+					<a href="/compte">
+						<p>
+							Mon Compte
+							<img class="logoCompte" src="images/user.png" alt="Mon Compte Movie Land ">
+						</p>
+					</a>
 				</div>
-			</div>
-
-		<script src="/socket.io/socket.io.js"></script>
-    <script>
+			</li>
+			<li><a href="/formules">Nos formules</a></li>
+			<li><a href="/noustrouver">Où nous Trouver</a></li>
+			<li><a href="/partenaires">Nos partenaires</a></li>
+			<li><a href="/vie">Vie du Parc</a></li>
+			<li><a href="/recompenses">Nos Récompenses</a></li>
+			<li>
+				<div>
+					<a id="disconnect" href="/deco">
+						<p>
+							Déconnection
+							<img class="logoCompte" src="images/disco.png" alt="Déconnection Movie Land">
+						</p>
+					</a>
+				</div>
+			</li>
+		</ul>
+		</div>
+	</nav>
+	<div class="navMobile">
+		<p class="btn btnMenu">Menu</p>
+		<ul id="linkMenuMobile" class="">
+			<li><a href="/attractions">Nos Attractions</a></li>
+			<li><a href="/seloger">Trouver où se loger</a></li>
+			<li><a href="/contact">Nous Contacter</a></li>
+			<li><a href="/emploi">Offres d'emploi</a></li>
+			<li><a href="/engagements">Nos Engagements</a></li>
+			<li><a href="/formules">Nos formules</a></li>
+			<li><a href="/noustrouver">Où nous Trouver</a></li>
+			<li><a href="/partenaires">Nos partenaires</a></li>
+			<li><a href="/vie">Vie du Parc</a></li>
+			<li><a href="/recompenses">Nos Récompenses</a></li>
+			<li>
+				<div>
+					<a href="/compte">
+						<p>
+							Mon Compte
+							<img class="logoCompte" src="images/user.png" alt="Mon Compte Movie Land ">
+						</p>
+					</a>
+				</div>
+			</li>
+			<li>
+				<div>
+					<a id="disconnect" href="/deco">
+						<p>
+							Déconnection
+							<img class="logoCompte" src="images/disco.png" alt="Déconnection Movie Land">
+						</p>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<h1 class="titlePages">S'inscrire</h1>
+	<div class="divCo">
+		<div class="registration">
+			<form class='formInscript' action="/adduser" method="POST">
+				<div>
+					<label for="firstname">Entrez votre prénom:</label>
+					<input type="text" id="firstnameInsc" name="firstname" placeholder="Entrez votre prénom" autofocus
+						required />
+				</div>
+				<div>
+					<label for="lastname">Entrez votre nom:</label>
+					<input type="text" id="lastnameInsc" name="lastname" placeholder="Entrez votre nom" required />
+				</div>
+				<div>
+					<label for="birth">Entrez votre date de naissance: </label>
+					<input type="date" id="birthInsc" name="birth" placeholder="Entrez votre date de naissance"
+						required />
+				</div>
+				<div>
+					<label for="mail">Entrez votre adresse mail:</label>
+					<input type="email" id="mailInsc" name="mail" placeholder="Entrez votre adresse mail" required />
+				</div>
+				<div>
+					<label for="phone">Entrez votre n° de téléphone:</label>
+					<input type="tel" id="phoneInsc" name="phone" placeholder="Entrez votre numéro de téléphone" />
+				</div>
+				<div>
+					<label for="password">Entrez votre mot de passe: </label>
+					<input type="password" id="passInsc" name="password" placeholder="Entrez votre mot de passe"
+						required />
+				</div>
+				<div>
+					<label for="confirmPwd">Confirmation du mot de passe:</label>
+					<input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirmer votre mot de passe"
+						required />
+				</div>
+				<div class="divAdmin">
+					<label for="adminCase">Cochez si vous vous inscrivez en tant qu'admin: </label>
+					<input type="checkbox" id="adminCaseInsc" name="adminCase"
+						placeholder="Cochez si vous vous connectez en tant qu'admin" />
+				</div>
+				<div id="divbtn">
+					<input class="btn" type="submit" id="signUp" value="S'inscrire">
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
 		let socket = io();
 		let body = document.querySelector("body");
-        let form = document.querySelector('form');
-		
+		let form = document.querySelector('form');
 		let inp = document.createElement('input');
 		let adminInsc = document.querySelector("#adminCaseInsc");
 		let divAdmin = document.querySelector('.divAdmin');
 
-
-
 		const pwdInput = document.querySelector("#passInsc");
-        const confirmPwdInput = document.querySelector("#confirmPwd");
+		const confirmPwdInput = document.querySelector("#confirmPwd");
 		let btnDisconnect = document.querySelector("#disconnect");
-
 		let btnMenu = document.querySelector(".btnMenu");
 		let linkMenuMobile = document.querySelector('#linkMenuMobile');
 
 		btnMenu.addEventListener('click', () => {
-			if ( linkMenuMobile.classList != 'active') {
+			if (linkMenuMobile.classList != 'active') {
 				console.log('add class');
 				linkMenuMobile.classList.add('active');
-			} else if (linkMenuMobile.classList == 'active'){
+			} else if (linkMenuMobile.classList == 'active') {
 				console.log('remove class');
 				linkMenuMobile.classList.remove('active');
 			}
@@ -168,44 +157,34 @@
 
 		btnDisconnect.addEventListener("click", async () => {
 			console.log('removing');
-            const removingUser = await browser.cookies.remove({name: "usertkn"});
-            const removingAdmin = await browser.cookies.remove({name: "admintkn"});
+			const removingUser = await browser.cookies.remove({ name: "usertkn" });
+			const removingAdmin = await browser.cookies.remove({ name: "admintkn" });
 			console.log(removingUser);
 			console.log(removingAdmin);
-            window.location = "/";
-        });
-		
-
-        
+			window.location = "/";
+		});
 
 		adminInsc.addEventListener('change', evt => {
-			if (adminInsc.checked == true){
+			if (adminInsc.checked == true) {
 				divAdmin.append(inp);
 				inp.setAttribute("type", "password");
 				inp.setAttribute("id", "passAdmin");
 				inp.setAttribute("placeholder", "Entrez le mot de passe Admin ");
 				inp.setAttribute("name", "passAdmin");
-
-			}else{
+			} else {
 				let passAdmin = document.querySelector("#passAdmin");
 				passAdmin.remove();
 			}
 		});
 
-
-
 		form.addEventListener("submit", e => {
 			let passAdmin = document.querySelector("#passAdmin");
-            if (pwdInput.value !== confirmPwdInput.value) {
-                e.preventDefault();
-                alert("Le mot de passe et sa confirmation doivent être identiques !");
-            }
-			// if (adminInsc.checked == true && passAdmin != "I'm an admin") {
-			// 	e.preventDefault();
-			// 	alert("Le mot de passe admin ne correspond pas !");
-			// }
-        });
-	
+			if (pwdInput.value !== confirmPwdInput.value) {
+				e.preventDefault();
+				alert("Le mot de passe et sa confirmation doivent être identiques !");
+			}
+		});
 	</script>
-	</body>
+</body>
+
 </html>

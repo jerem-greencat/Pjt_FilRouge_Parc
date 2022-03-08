@@ -22,7 +22,6 @@ module.exports = {
                 return callback(msg)
             })
         } catch (error){
-            console.log(error);
             return callback(error)
         }
     }
