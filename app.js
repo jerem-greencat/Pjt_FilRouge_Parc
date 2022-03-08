@@ -12,7 +12,6 @@ const fs = require('fs');
 
 const db = require('./dbConfig');
 const con = db.con;
-console.log(con);
 
 
 const imageRouter = require('./roadsFiles/image-route');
@@ -22,13 +21,6 @@ const res = require("express/lib/response");
 
 const SECRET = 'token';
 
-
-// const con = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "movieLand"
-// })
 
 let adminPassword = "I'm an admin";
 let userId;
@@ -98,7 +90,7 @@ con.connect(function (err) {
             let uploadFiles = './public/uploadFiles/';
 
              // liste tous les fichiers présents dans le dossier
-            // const files = fs.readdirSync(uploadFiles);
+            
             fs.readdir(uploadFiles, (err, files) => {
                 console.log(files)
                 if (err) {
@@ -124,8 +116,6 @@ con.connect(function (err) {
         .get('/compte', (req, res) => {
 
             const {usertkn, admintkn } = req.cookies;
-            console.log(usertkn);
-            console.log(admintkn);
             if (usertkn == undefined && admintkn == undefined) {
                 res.render(__dirname + '/public/pages/connection.ejs');
             } else {
@@ -191,6 +181,7 @@ con.connect(function (err) {
 
             let query;
             let insert;
+
             if (adminC !== 'on') {
                 query = `SELECT user_id FROM user WHERE user_mail = "${mail}" LIMIT 1;`;
             } else {
@@ -199,13 +190,8 @@ con.connect(function (err) {
 
             if (adminC == 'on' && passAdmin == adminPassword) {
                 insert = `INSERT INTO admin (admin_firstname, admin_lastname, admin_birth, admin_mail, admin_phone, admin_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
-
-
             } else if (adminC !== 'on'){
                 insert = `INSERT INTO user (user_firstname, user_lastname, user_birth, user_mail, user_phone, user_password) VALUES ("${fName}", "${lName}", "${birth}", "${mail}", "${phone}","${pwd}");`;
-
-                console.log('insert avec adminC = On')
-
             } 
 
             con.query(query, (errorSlct, users) => {
@@ -213,13 +199,10 @@ con.connect(function (err) {
                 if (adminC == 'on' && passAdmin !== adminPassword) {
                     res.redirect('/error/4');
                 } else if (users.length !== 0) {
-                    console.log(users)
                     res.redirect('/error/1');
                 } else {
                     con.query(insert, (error, result) => {
-                        if (error) {
-                            console.log("non c'est la");
-                        }
+                        if (error) throw error;
                         if (result.affectedRows) {
                             res.redirect('/');
                         } else {
@@ -238,15 +221,11 @@ con.connect(function (err) {
             const passAdmin = req.body.passAdmin;
 
             let query;
-            // let update;
 
             if (adminC !== 'on') {
                 query = `SELECT user_id FROM user WHERE user_mail = "${mail}" AND user_password = "${pwd}"`;
-
-// adminC == 'on' &&
             } else if ( passAdmin == adminPassword) {
                 query = `SELECT admin_id FROM admin WHERE admin_mail = "${mail}" AND admin_password = "${pwd}"`;
-
             };
 
 
@@ -262,43 +241,22 @@ con.connect(function (err) {
                     adminId = users[0].admin_id;
                     if (adminC !== 'on') {
                         userConected.push(userId);
-
                         const token = jwt.sign({
                             id: userId
                         }, SECRET, { expiresIn: '3 hours' })
-
-                        
-                        res.cookie('usertkn',token );
-
-                        //  , {maxAge: 10800} : A ajouter en paramètres au dessus pour destruction du cookies
-
-                        console.log(req.cookies);
-                        
+                        res.cookie('usertkn',token );                        
                         res.redirect('/');
-
-
                     } else if (adminC == 'on' && passAdmin == adminPassword) {
                         adminConected.push(adminId);
-
                         const token = jwt.sign({
                             id: adminId
                         }, SECRET, { expiresIn: '3 hours' })
-                        res.cookie('admintkn',token);
-
-                        //  , {maxAge: 10800} : A ajouter en paramètres au dessus pour destruction du cookies
-                        
+                        res.cookie('admintkn',token);                        
                         res.redirect('/');
-
-
                     };
                 }
-                
-                
             });
         })
-
     server.listen(8080);
-
 });
-
 module.exports = con;
